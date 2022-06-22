@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Magazin Mobila</title>
+</head>
+<body>
+<h1>Bun venit in magazin!</h1>
+<p>Selectie:</p>
+<table>
+    <thead>
+        <tr>
+            <td>Tip</td>
+            <td>Nume</td>
+            <td>Culoare</td>
+            <td>Material</td>
+            <td>Inaltime</td>
+            <td>Lungime</td>
+            <td>Latime</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="mobila : ${listaMobila}">
+            <td th:text="${mobila.tip}"></td>
+            <td th:text="${mobila.nume}"></td>
+            <td th:text="${mobila.culoare}"></td>
+            <td th:text="${mobila.material}"></td>
+            <td th:text="${mobila.inaltime}"></td>
+            <td th:text="${mobila.lungime}"></td>
+            <td th:text="${mobila.latime}"></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
