@@ -1,47 +1,56 @@
 package com.ajpv.magazinmobila.model;
 
 public class Mobila {
-    private String tip;
-    private String nume;
-    private String culoare;
+    private int nr;
+    private String category;
+    private String name;
+    private String color;
     private String material;
-    private double inaltime;
-    private double lungime;
-    private double latime;
+    private double height;
+    private double length;
+    private double width;
 
-    public Mobila(String tip, String nume, String culoare, String material,
-                  double inaltime, double lungime, double latime) {
-        this.tip = tip;
-        this.nume = nume;
-        this.culoare = culoare;
+    public Mobila(int nr, String category, String name, String color, String material, double height, double length, double width) {
+        this.nr = nr;
+        this.category = category;
+        this.name = name;
+        this.color = color;
         this.material = material;
-        this.inaltime = inaltime;
-        this.lungime = lungime;
-        this.latime = latime;
+        this.height = height;
+        this.length = length;
+        this.width = width;
     }
 
-    public String getTip() {
-        return tip;
+    public int getNr() {
+        return nr;
     }
 
-    public void setTip(String tip) {
-        this.tip = tip;
+    public void setNr(int nr) {
+        this.nr = nr;
     }
 
-    public String getNume() {
-        return nume;
+    public String getCategory() {
+        return category;
     }
 
-    public void setNume(String nume) {
-        this.nume = nume;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public String getCuloare() {
-        return culoare;
+    public String getName() {
+        return name;
     }
 
-    public void setCuloare(String culoare) {
-        this.culoare = culoare;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getMaterial() {
@@ -52,27 +61,27 @@ public class Mobila {
         this.material = material;
     }
 
-    public double getInaltime() {
-        return inaltime;
+    public double getHeight() {
+        return height;
     }
 
-    public void setInaltime(int inaltime) {
-        this.inaltime = inaltime;
+    public void setHeight(double height) {
+        this.height = height;
     }
 
-    public double getLungime() {
-        return lungime;
+    public double getLength() {
+        return length;
     }
 
-    public void setLungime(int lungime) {
-        this.lungime = lungime;
+    public void setLength(double length) {
+        this.length = length;
     }
 
-    public double getLatime() {
-        return latime;
+    public double getWidth() {
+        return width;
     }
 
-    public void setLatime(int latime) {
-        this.latime = latime;
+    public void setWidth(double width) {
+        this.width = width;
     }
 }

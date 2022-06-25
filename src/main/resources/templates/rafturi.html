@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Magazin Mobilă</title>
+    <title>Rafturi</title>
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
@@ -17,15 +17,39 @@
                 <a class="nav-link" href="/birouri">Birouri</a>
                 <a class="nav-link" href="/scaune">Scaune</a>
                 <a class="nav-link" href="/biblioteci">Biblioteci</a>
-                <a class="nav-link" href="/rafturi">Rafturi</a>
+                <a class="nav-link active" aria-current="page" href="/rafturi">Rafturi</a>
                 <a class="nav-link" href="/comode">Comode</a>
             </div>
         </div>
     </div>
 </nav>
 
-<h1>Bun venit în magazin!</h1>
-<p>Faceți o selecție folosind bara de sus.</p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <td>Nr. Int.</td>
+        <td>Categorie</td>
+        <td>Nume</td>
+        <td>Culoare</td>
+        <td>Material</td>
+        <td>Înălțime</td>
+        <td>Lungime</td>
+        <td>Lățime</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="raft : ${listaRaft}">
+        <td th:text="${raft.nr}+'.'"></td>
+        <td th:text="${raft.category}"></td>
+        <td th:text="${raft.name}"></td>
+        <td th:text="${raft.color}"></td>
+        <td th:text="${raft.material}"></td>
+        <td th:text="${raft.height}+' cm'"></td>
+        <td th:text="${raft.length}+' cm'"></td>
+        <td th:text="${raft.width}+' cm'"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </html>

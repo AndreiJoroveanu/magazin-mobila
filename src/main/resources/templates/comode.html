@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Magazin Mobilă</title>
+    <title>Comode</title>
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
@@ -18,14 +18,38 @@
                 <a class="nav-link" href="/scaune">Scaune</a>
                 <a class="nav-link" href="/biblioteci">Biblioteci</a>
                 <a class="nav-link" href="/rafturi">Rafturi</a>
-                <a class="nav-link" href="/comode">Comode</a>
+                <a class="nav-link active" aria-current="page" href="/comode">Comode</a>
             </div>
         </div>
     </div>
 </nav>
 
-<h1>Bun venit în magazin!</h1>
-<p>Faceți o selecție folosind bara de sus.</p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <td>Nr. Int.</td>
+        <td>Categorie</td>
+        <td>Nume</td>
+        <td>Culoare</td>
+        <td>Material</td>
+        <td>Înălțime</td>
+        <td>Lungime</td>
+        <td>Lățime</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="comoda : ${listaComoda}">
+        <td th:text="${comoda.nr}+'.'"></td>
+        <td th:text="${comoda.category}"></td>
+        <td th:text="${comoda.name}"></td>
+        <td th:text="${comoda.color}"></td>
+        <td th:text="${comoda.material}"></td>
+        <td th:text="${comoda.height}+' cm'"></td>
+        <td th:text="${comoda.length}+' cm'"></td>
+        <td th:text="${comoda.width}+' cm'"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </html>
