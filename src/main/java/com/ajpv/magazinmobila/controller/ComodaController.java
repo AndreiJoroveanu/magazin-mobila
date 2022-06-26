@@ -13,19 +13,19 @@ public class ComodaController {
     public String index(Model model){
         List<Comoda> listaComoda = List.of(
                 new Comoda(1, "Comoda (TV)", "Irim Bella", "Sonoma",
-                        "PAL", 39, 120, 40),
+                        "PAL", 39, 120, 40, 169.9),
 
                 new Comoda(2, "Comoda", "Homcom", "Maro",
-                        "Lemn", 67, 72, 33.5),
+                        "Lemn", 67, 72, 33.5, 539.9),
 
                 new Comoda(5, "Comoda", "Irim Spark", "Sonoma",
-                        "PAL", 91, 100, 43.5),
+                        "PAL", 91, 100, 43.5, 499.9),
 
                 new Comoda(4, "Comoda", "Mirjan 24", "Alb",
-                        "PAL", 77, 120, 30),
+                        "PAL", 77, 120, 30, 479.0),
 
                 new Comoda(5, "Comoda", "Model 6080", "Mesteacan",
-                        "PAL & Plastic", 79, 90, 30)
+                        "PAL & Plastic", 79, 90, 30, 236.8)
         );
         model.addAttribute("listaComoda", listaComoda);
         return "comode";

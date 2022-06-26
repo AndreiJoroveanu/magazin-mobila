@@ -24,32 +24,36 @@
     </div>
 </nav>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <td>Nr. Int.</td>
-        <td>Categorie</td>
-        <td>Nume</td>
-        <td>Culoare</td>
-        <td>Material</td>
-        <td>Înălțime</td>
-        <td>Lungime</td>
-        <td>Lățime</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="raft : ${listaRaft}">
-        <td th:text="${raft.nr}+'.'"></td>
-        <td th:text="${raft.category}"></td>
-        <td th:text="${raft.name}"></td>
-        <td th:text="${raft.color}"></td>
-        <td th:text="${raft.material}"></td>
-        <td th:text="${raft.height}+' cm'"></td>
-        <td th:text="${raft.length}+' cm'"></td>
-        <td th:text="${raft.width}+' cm'"></td>
-    </tr>
-    </tbody>
-</table>
+<div class="shadow mb-5 bg-body rounded">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>Nr. Int.</td>
+            <td>Categorie</td>
+            <td>Nume</td>
+            <td>Culoare</td>
+            <td>Material</td>
+            <td>Înălțime</td>
+            <td>Lungime</td>
+            <td>Lățime</td>
+            <td>Preț</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="raft : ${listaRaft}">
+            <td th:text="${raft.nr}+'.'"></td>
+            <td th:text="${raft.category}"></td>
+            <td th:text="${raft.name}"></td>
+            <td th:text="${raft.color}"></td>
+            <td th:text="${raft.material}"></td>
+            <td th:text="${raft.height}+' cm'"></td>
+            <td th:text="${raft.length}+' cm'"></td>
+            <td th:text="${raft.width}+' cm'"></td>
+            <td th:text="${raft.price}+' lei'"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </html>

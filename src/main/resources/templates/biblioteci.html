@@ -24,32 +24,36 @@
     </div>
 </nav>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <td>Nr. Int.</td>
-        <td>Categorie</td>
-        <td>Nume</td>
-        <td>Culoare</td>
-        <td>Material</td>
-        <td>Înălțime</td>
-        <td>Lungime</td>
-        <td>Lățime</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="biblioteca : ${listaBiblioteca}">
-        <td th:text="${biblioteca.nr}+'.'"></td>
-        <td th:text="${biblioteca.category}"></td>
-        <td th:text="${biblioteca.name}"></td>
-        <td th:text="${biblioteca.color}"></td>
-        <td th:text="${biblioteca.material}"></td>
-        <td th:text="${biblioteca.height}+' cm'"></td>
-        <td th:text="${biblioteca.length}+' cm'"></td>
-        <td th:text="${biblioteca.width}+' cm'"></td>
-    </tr>
-    </tbody>
-</table>
+<div class="shadow mb-5 bg-body rounded">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>Nr. Int.</td>
+            <td>Categorie</td>
+            <td>Nume</td>
+            <td>Culoare</td>
+            <td>Material</td>
+            <td>Înălțime</td>
+            <td>Lungime</td>
+            <td>Lățime</td>
+            <td>Preț</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="biblioteca : ${listaBiblioteca}">
+            <td th:text="${biblioteca.nr}+'.'"></td>
+            <td th:text="${biblioteca.category}"></td>
+            <td th:text="${biblioteca.name}"></td>
+            <td th:text="${biblioteca.color}"></td>
+            <td th:text="${biblioteca.material}"></td>
+            <td th:text="${biblioteca.height}+' cm'"></td>
+            <td th:text="${biblioteca.length}+' cm'"></td>
+            <td th:text="${biblioteca.width}+' cm'"></td>
+            <td th:text="${biblioteca.price}+' lei'"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </html>

@@ -2,8 +2,8 @@ package com.ajpv.magazinmobila.model;
 
 public class Scaun extends Mobila{
     private int maxWeight;
-    public Scaun(int nr, String category, String name, String color, String material, int maxWeight, double height, double length, double width) {
-        super(nr, category, name, color, material, height, length, width);
+    public Scaun(int nr, String category, String name, String color, String material, int maxWeight, double height, double length, double width, double price) {
+        super(nr, category, name, color, material, height, length, width, price);
         this.maxWeight = maxWeight;
     }
 

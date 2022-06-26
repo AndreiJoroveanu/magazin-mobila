@@ -13,19 +13,19 @@ public class BirouController {
     public String index(Model model){
         List<Birou> listaBirou = List.of(
                 new Birou(1, "Birou", "Nefmob Nove", "Sonoma",
-                        "PAL", 75, 90, 55),
+                        "PAL", 75, 90, 55, 199.9),
 
                 new Birou(2, "Birou (Rollbox)", "Homcom", "Alb",
-                        "MDF", 60, 33, 45),
+                        "MDF", 60, 33, 45, 349.9),
 
                 new Birou(3, "Birou", "Kring Gaming", "Alb",
-                        "PAL", 91, 160, 72),
+                        "PAL", 91, 160, 72, 999.9),
 
                 new Birou(4, "Birou", "PVC N-3", "Alb",
-                        "PAL", 76, 96, 50),
+                        "PAL", 76, 96, 50, 283.7),
 
                 new Birou(5, "Birou", "Homcom", "Maro",
-                        "Lemn", 72, 120, 49)
+                        "Lemn", 72, 120, 49, 509.9)
         );
         model.addAttribute("listaBirou", listaBirou);
         return "birouri";

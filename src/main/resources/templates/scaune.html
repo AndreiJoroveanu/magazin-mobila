@@ -24,34 +24,38 @@
     </div>
 </nav>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <td>Nr. Int.</td>
-        <td>Categorie</td>
-        <td>Nume</td>
-        <td>Culoare</td>
-        <td>Material</td>
-        <td>Greutate maximă</td>
-        <td>Înălțime</td>
-        <td>Lungime</td>
-        <td>Lățime</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="scaun : ${listaScaun}">
-        <td th:text="${scaun.nr}+'.'"></td>
-        <td th:text="${scaun.category}"></td>
-        <td th:text="${scaun.name}"></td>
-        <td th:text="${scaun.color}"></td>
-        <td th:text="${scaun.material}"></td>
-        <td th:text="${scaun.maxWeight}+' kg'"></td>
-        <td th:text="${scaun.height}+' cm'"></td>
-        <td th:text="${scaun.length}+' cm'"></td>
-        <td th:text="${scaun.width}+' cm'"></td>
-    </tr>
-    </tbody>
-</table>
+<div class="shadow mb-5 bg-body rounded">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>Nr. Int.</td>
+            <td>Categorie</td>
+            <td>Nume</td>
+            <td>Culoare</td>
+            <td>Material</td>
+            <td>Greutate maximă</td>
+            <td>Înălțime</td>
+            <td>Lungime</td>
+            <td>Lățime</td>
+            <td>Preț</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="scaun : ${listaScaun}">
+            <td th:text="${scaun.nr}+'.'"></td>
+            <td th:text="${scaun.category}"></td>
+            <td th:text="${scaun.name}"></td>
+            <td th:text="${scaun.color}"></td>
+            <td th:text="${scaun.material}"></td>
+            <td th:text="${scaun.maxWeight}+' kg'"></td>
+            <td th:text="${scaun.height}+' cm'"></td>
+            <td th:text="${scaun.length}+' cm'"></td>
+            <td th:text="${scaun.width}+' cm'"></td>
+            <td th:text="${scaun.price}+' lei'"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </html>

@@ -13,19 +13,19 @@ public class BibliotecaController {
     public String index(Model model){
         List<Biblioteca> listaBiblioteca = List.of(
                 new Biblioteca(1, "Biblioteca", "Kring Marseille", "Lemn natur",
-                        "Lemn (bambus)", 120, 57, 32),
+                        "Lemn (bambus)", 120, 57, 32, 249.9),
 
                 new Biblioteca(2, "Biblioteca", "Homcom", "Maro/Negru",
-                        "Metal & PAL", 182, 100, 30),
+                        "Metal & PAL", 182, 100, 30, 699.9),
 
                 new Biblioteca(3, "Biblioteca", "Irim Hristo", "Maro",
-                        "PAL", 145.5, 158.5, 29),
+                        "PAL", 145.5, 158.5, 29, 499.9),
 
                 new Biblioteca(4, "Biblioteca", "Kring Ashford", "Maro/Alb",
-                        "PAL", 150, 125, 28),
+                        "PAL", 150, 125, 28, 399.9),
 
                 new Biblioteca(5, "Biblioteca (Raft carti)", "MO6070", "Alb",
-                        "PAL", 133, 40, 20)
+                        "PAL", 133, 40, 20, 199.8)
         );
         model.addAttribute("listaBiblioteca", listaBiblioteca);
         return "biblioteci";

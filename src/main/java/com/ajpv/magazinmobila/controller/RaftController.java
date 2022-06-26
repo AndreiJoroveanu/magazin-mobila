@@ -13,19 +13,19 @@ public class RaftController {
     public String index(Model model){
         List<Raft> listaRaft = List.of(
                 new Raft(1, "Raft", "Kring Capri", "Alb/Lemn natur",
-                        "Bambus & Metal", 110, 34, 33),
+                        "Bambus & Metal", 110, 34, 33, 149.9),
 
                 new Raft(2, "Raft (Pe roti)", "Homcom", "Argintiu",
-                        "Otel inoxidabil", 85, 90, 45),
+                        "Otel inoxidabil", 85, 90, 45, 559.9),
 
                 new Raft(3, "Raft", "Wenge", "Wenge",
-                        "MDF", 30, 26.4, 10),
+                        "MDF", 30, 26.4, 10, 46.4),
 
                 new Raft(4, "Raft (Suport router)", "SenseConnect", "Alb",
-                        "Lemn (MDF) & Aliaj", 28, 36, 8.5),
+                        "Lemn (MDF) & Aliaj", 28, 36, 8.5, 188.0),
 
                 new Raft(5, "Raft", "Homcom", "Negru",
-                        "MDF", 192, 80, 25)
+                        "MDF", 192, 80, 25, 379.9)
         );
         model.addAttribute("listaRaft", listaRaft);
         return "rafturi";

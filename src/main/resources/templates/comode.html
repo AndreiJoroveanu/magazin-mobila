@@ -24,32 +24,36 @@
     </div>
 </nav>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <td>Nr. Int.</td>
-        <td>Categorie</td>
-        <td>Nume</td>
-        <td>Culoare</td>
-        <td>Material</td>
-        <td>Înălțime</td>
-        <td>Lungime</td>
-        <td>Lățime</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="comoda : ${listaComoda}">
-        <td th:text="${comoda.nr}+'.'"></td>
-        <td th:text="${comoda.category}"></td>
-        <td th:text="${comoda.name}"></td>
-        <td th:text="${comoda.color}"></td>
-        <td th:text="${comoda.material}"></td>
-        <td th:text="${comoda.height}+' cm'"></td>
-        <td th:text="${comoda.length}+' cm'"></td>
-        <td th:text="${comoda.width}+' cm'"></td>
-    </tr>
-    </tbody>
-</table>
+<div class="shadow mb-5 bg-body rounded">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>Nr. Int.</td>
+            <td>Categorie</td>
+            <td>Nume</td>
+            <td>Culoare</td>
+            <td>Material</td>
+            <td>Înălțime</td>
+            <td>Lungime</td>
+            <td>Lățime</td>
+            <td>Preț</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comoda : ${listaComoda}">
+            <td th:text="${comoda.nr}+'.'"></td>
+            <td th:text="${comoda.category}"></td>
+            <td th:text="${comoda.name}"></td>
+            <td th:text="${comoda.color}"></td>
+            <td th:text="${comoda.material}"></td>
+            <td th:text="${comoda.height}+' cm'"></td>
+            <td th:text="${comoda.length}+' cm'"></td>
+            <td th:text="${comoda.width}+' cm'"></td>
+            <td th:text="${comoda.price}+' lei'"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </html>
