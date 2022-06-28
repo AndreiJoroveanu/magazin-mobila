@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
+<div class="bg-image" style="background-image: url('/assets/background.jpg'); height: 100vh">
 <!-- Clasă Navbar -->
 <nav class="navbar fixed-top navbar-expand-sm shadow mb-2" style="background-color: #e3f2fd;">
     <div class="container-lg">
@@ -35,8 +36,8 @@
 </div>
 
 <!-- Clasă tabel -->
-<div class="container-xl bg-body rounded">
-    <table class="table table-striped shadow">
+<div class="mt-2 container-xl">
+    <table class="table bg-body table-striped table-hover rounded shadow">
         <thead>
         <tr>
             <td>Nr. Int.</td>
@@ -64,6 +65,7 @@
         </tr>
         </tbody>
     </table>
+</div>
 </div>
 </body>
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
