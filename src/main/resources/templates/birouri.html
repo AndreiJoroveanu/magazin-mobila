@@ -7,12 +7,16 @@
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
-<nav class="navbar sticky-top navbar-expand-sm shadow mb-2 rounded" style="background-color: #e3f2fd;">
+<!-- Clasă Navbar -->
+<nav class="navbar fixed-top navbar-expand-sm shadow mb-2" style="background-color: #e3f2fd;">
     <div class="container-lg">
         <a class="navbar-brand" href="/index">
             <img width="32" height="32" class="d-inline-block align-text-top" th:src="@{assets/brand/cart-icon.png}" src="" alt="" >
             Acasă
         </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="/birouri">Birouri</a>
@@ -25,8 +29,14 @@
     </div>
 </nav>
 
-<div class="container-xl shadow mb-5 bg-body rounded">
-    <table class="table table-striped">
+<!-- Pentru a spația corect conținutul de Navbar -->
+<div class="d-flex" style="height: 60px;">
+    <div class="vr"></div>
+</div>
+
+<!-- Clasă tabel -->
+<div class="container-xl bg-body rounded">
+    <table class="table table-striped shadow">
         <thead>
         <tr>
             <td>Nr. Int.</td>
