@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Comode</title>
+    <link rel="icon" type="image/x-icon" th:href="@{assets/brand/cart-icon.png}">
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-    <div class="container-fluid">
+<nav class="navbar sticky-top navbar-expand-sm shadow mb-2 rounded" style="background-color: #e3f2fd;">
+    <div class="container-lg">
         <a class="navbar-brand" href="/index">
-            <img src="../static/assets/brand/cart-icon.png" alt="" width="32" height="32" class="d-inline-block align-text-top" th:src="@{assets/brand/cart-icon.png}">
+            <img width="32" height="32" class="d-inline-block align-text-top" th:src="@{assets/brand/cart-icon.png}" src="" alt="" >
             Acasă
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -24,7 +25,7 @@
     </div>
 </nav>
 
-<div class="shadow mb-5 bg-body rounded">
+<div class="container-xl shadow mb-5 bg-body rounded">
     <table class="table table-striped">
         <thead>
         <tr>
