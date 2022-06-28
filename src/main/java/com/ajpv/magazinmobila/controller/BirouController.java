@@ -25,7 +25,22 @@ public class BirouController {
                         "PAL", 76, 96, 50, 283.7),
 
                 new Birou(5, "Birou", "Homcom", "Maro",
-                        "Lemn", 72, 120, 49, 509.9)
+                        "Lemn", 72, 120, 49, 509.9),
+
+                new Birou(6, "Birou", "Adria", "Alb/Stejar",
+                        "PAL (Stejar)", 76, 120, 50, 349.9),
+
+                new Birou(7, "Birou", "Akord Furniture Factory", "Alb",
+                        "PAL", 74, 80, 80, 306.9),
+
+                new Birou(8, "Birou", "Kring Edge", "Crem/Negru",
+                        "Otel & MDF", 74, 90, 45, 249.9),
+
+                new Birou(9, "Birou", "VASAGLE", "Maro",
+                        "Metal & MDF", 75, 149, 149, 469.9),
+
+                new Birou(10, "Birou", "Mobiref", "Alb",
+                        "PAL", 76, 100, 51, 148.9)
         );
         model.addAttribute("listaBirou", listaBirou);
         return "birouri";

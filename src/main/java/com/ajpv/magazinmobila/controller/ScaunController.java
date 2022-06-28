@@ -25,7 +25,22 @@ public class ScaunController {
                         "Plasa & Inox", 150, 117, 61.5, 62.5, 399.9),
 
                 new Scaun(5, "Scaun", "Relax Vinsetto", "Gri",
-                        "Plastic", 120, 116, 53, 46, 1169.9)
+                        "Plastic", 120, 116, 53, 46, 1169.9),
+
+                new Scaun(6, "Scaun", "Ergoplus Joy", "Negru",
+                        "Stofa & Nylon", 100, 110, 50, 49, 749.9),
+
+                new Scaun(7, "Scaun", "Kring Bokai", "Negru",
+                        "Piele eco & Metal", 120, 124, 64, 69.5, 599.9),
+
+                new Scaun(8, "Scaun", "Ergoplus Joy-H", "Negru",
+                        "Stofa & Nylon", 120, 131, 51, 51, 799.9),
+
+                new Scaun(9, "Scaun", "Timeless Tools", "Negru",
+                        "Poliester & Metal", 90, 99, 48, 40, 250.0),
+
+                new Scaun(10, "Scaun", "Kring Rome", "Bej",
+                        "Metal", 100, 80, 50, 46, 249.9)
         );
         model.addAttribute("listaScaun", listaScaun);
         return "scaune";

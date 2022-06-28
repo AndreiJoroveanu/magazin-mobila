@@ -25,7 +25,22 @@ public class BibliotecaController {
                         "PAL", 150, 125, 28, 399.9),
 
                 new Biblioteca(5, "Biblioteca (Raft carti)", "MO6070", "Alb",
-                        "PAL", 133, 40, 20, 199.8)
+                        "PAL", 133, 40, 20, 199.8),
+
+                new Biblioteca(6, "Biblioteca", "Kring Bath", "Alb/Maro",
+                        "PAL", 180, 75, 25, 249.9),
+
+                new Biblioteca(7, "Biblioteca", "Irim Clara", "Alb/Maro",
+                        "PAL", 137.5, 143.5, 33, 499.9),
+
+                new Biblioteca(8, "Biblioteca", "MO6071", "Alb",
+                        "PAL & PVC", 122, 45, 22, 199.8),
+
+                new Biblioteca(9, "Biblioteca", "Kring Barking", "Wenge",
+                        "PAL & ABS", 131, 50, 25, 249.9),
+
+                new Biblioteca(10, "Biblioteca", "Sonoma", "Sonoma",
+                        "PAL", 200, 70, 32, 415.0)
         );
         model.addAttribute("listaBiblioteca", listaBiblioteca);
         return "biblioteci";

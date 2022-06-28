@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Magazin Mobilă</title>
+    <link rel="icon" type="image/x-icon" th:href="@{assets/brand/cart-icon.png}">
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-    <div class="container-fluid">
+<nav class="navbar sticky-top navbar-expand-sm shadow mb-2 rounded" style="background-color: #e3f2fd;">
+    <div class="container-lg">
         <a class="navbar-brand" href="/index">
-            <img src="../static/assets/brand/cart-icon.png" alt="" width="32" height="32" class="d-inline-block align-text-top" th:src="@{assets/brand/cart-icon.png}">
+            <img width="32" height="32" class="d-inline-block align-text-top" th:src="@{assets/brand/cart-icon.png}" src="" alt="" >
             Acasă
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -24,8 +25,57 @@
     </div>
 </nav>
 
-<h1>Bun venit în magazin!</h1>
-<p>Faceți o selecție folosind bara de sus.</p>
+<div class="container-md">
+    <h1>Bun venit în magazin!</h1>
+    <p>Faceți o selecție folosind cardurile de mai jos sau bara de sus.</p>
+    <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 g-4">
+        <div class="col">
+            <div class="card">
+                <img th:src="@{assets/categories/birou.webp}" class="card-img-top" src="" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Birouri</h5>
+                    <a href="/birouri" class="btn btn-primary">Mergeți</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img th:src="@{assets/categories/scaun.webp}" class="card-img-top" src="" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Scaune</h5>
+                    <a href="/scaune" class="btn btn-primary">Mergeți</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img th:src="@{assets/categories/biblioteca.webp}" class="card-img-top" src="" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Biblioteci</h5>
+                    <a href="/biblioteci" class="btn btn-primary">Mergeți</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img th:src="@{assets/categories/raft.webp}" class="card-img-top" src="" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Rafturi</h5>
+                    <a href="/rafturi" class="btn btn-primary">Mergeți</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img th:src="@{assets/categories/comoda.webp}" class="card-img-top" src="" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Comode</h5>
+                    <a href="/comode" class="btn btn-primary">Mergeți</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </html>
