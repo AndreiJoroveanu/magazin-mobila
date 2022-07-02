@@ -1,17 +1,12 @@
 package com.ajpv.magazinmobila.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
+@Getter
+@Setter
+@SuperBuilder
 public class Scaun extends Mobila{
     private int maxWeight;
-    public Scaun(int nr, String category, String name, String color, String material, int maxWeight, double height, double length, double width, double price) {
-        super(nr, category, name, color, material, height, length, width, price);
-        this.maxWeight = maxWeight;
-    }
-
-    public int getMaxWeight() {
-        return maxWeight;
-    }
-
-    public void setMaxWeight(int maxWeight) {
-        this.maxWeight = maxWeight;
-    }
 }

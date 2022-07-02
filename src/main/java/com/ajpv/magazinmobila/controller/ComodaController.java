@@ -1,9 +1,12 @@
 package com.ajpv.magazinmobila.controller;
 
+import com.ajpv.magazinmobila.model.Birou;
 import com.ajpv.magazinmobila.model.Comoda;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -12,37 +15,144 @@ public class ComodaController {
     @GetMapping(value = "/comode")
     public String index(Model model){
         List<Comoda> listaComoda = List.of(
-                new Comoda(1, "Comoda (TV)", "Irim Bella", "Sonoma",
-                        "PAL", 39, 120, 40, 169.9),
+                Comoda.builder()
+                        .nr(1)
+                        .category("Comoda (TV)")
+                        .name("Irim Bella")
+                        .color("Sonoma")
+                        .material("PAL")
+                        .height(39)
+                        .length(120)
+                        .width(40)
+                        .price(169.9)
+                        .build(),
 
-                new Comoda(2, "Comoda", "Homcom", "Maro",
-                        "Lemn", 67, 72, 33.5, 539.9),
+                Comoda.builder()
+                        .nr(2)
+                        .category("Comoda")
+                        .name("Homcom")
+                        .color("Maro")
+                        .material("Lemn")
+                        .height(67)
+                        .length(72)
+                        .width(33.5)
+                        .price(539.9)
+                        .build(),
 
-                new Comoda(5, "Comoda", "Irim Spark", "Sonoma",
-                        "PAL", 91, 100, 43.5, 499.9),
+                Comoda.builder()
+                        .nr(3)
+                        .category("Comoda")
+                        .name("Irim Spark")
+                        .color("Sonoma")
+                        .material("PAL")
+                        .height(91)
+                        .length(100)
+                        .width(43.5)
+                        .price(499.9)
+                        .build(),
 
-                new Comoda(4, "Comoda", "Mirjan 24", "Alb",
-                        "PAL", 77, 120, 30, 479.0),
+                Comoda.builder()
+                        .nr(4)
+                        .category("Comoda")
+                        .name("Mirjan 24")
+                        .color("Alb")
+                        .material("PAL")
+                        .height(77)
+                        .length(120)
+                        .width(30)
+                        .price(479.0)
+                        .build(),
 
-                new Comoda(5, "Comoda", "Model 6080", "Mesteacan",
-                        "PAL & Plastic", 79, 90, 30, 236.8),
+                Comoda.builder()
+                        .nr(5)
+                        .category("Comoda")
+                        .name("Model 6080")
+                        .color("Mesteacan")
+                        .material("PAL & Plastic")
+                        .height(79)
+                        .length(90)
+                        .width(30)
+                        .price(236.8)
+                        .build(),
 
-                new Comoda(6, "Comoda", "Osko 120 OK6", "Alb",
-                        "PAL", 77, 120, 30, 479.0),
+                Comoda.builder()
+                        .nr(6)
+                        .category("Comoda")
+                        .name("Osko 120 OK6")
+                        .color("Alb")
+                        .material("PAL")
+                        .height(77)
+                        .length(120)
+                        .width(30)
+                        .price(479.0)
+                        .build(),
 
-                new Comoda(7, "Comoda", "K Akord Furniture Factory", "Alb",
-                        "PAL", 99, 160, 40, 856.9),
+                Comoda.builder()
+                        .nr(7)
+                        .category("Comoda")
+                        .name("K Akord Furniture Factory")
+                        .color("Alb")
+                        .material("PAL")
+                        .height(99)
+                        .length(160)
+                        .width(40)
+                        .price(856.9)
+                        .build(),
 
-                new Comoda(8, "Comoda", "Irim Faust", "Nuc/Alb",
-                        "PAL", 41, 40, 35.5, 119.9),
+                Comoda.builder()
+                        .nr(8)
+                        .category("Comoda")
+                        .name("Irim Faust")
+                        .color("Nuc/Alb")
+                        .material("PAL")
+                        .height(41)
+                        .length(40)
+                        .width(35.5)
+                        .price(119.9)
+                        .build(),
 
-                new Comoda(9, "Comoda", "Akord Furniture Factory", "Alb",
-                        "PAL", 77, 60, 40, 295.9),
+                Comoda.builder()
+                        .nr(9)
+                        .category("Comoda")
+                        .name("Akord Furniture Factory")
+                        .color("Alb")
+                        .material("PAL")
+                        .height(77)
+                        .length(60)
+                        .width(40)
+                        .price(295.9)
+                        .build(),
 
-                new Comoda(10, "Comoda", "Kring Spicy", "Multicolor",
-                        "PAL", 78, 114, 30, 499.9)
+                Comoda.builder()
+                        .nr(10)
+                        .category("Comoda")
+                        .name("Kring Spicy")
+                        .color("Multicolor")
+                        .material("PAL")
+                        .height(78)
+                        .length(114)
+                        .width(30)
+                        .price(499.9)
+                        .build()
         );
         model.addAttribute("listaComoda", listaComoda);
         return "comode";
+    }
+
+    @GetMapping(value = "/adauga/comoda")
+    public String adaugaComoda(Model model) {
+        Comoda comoda = Comoda.builder().build();
+        model.addAttribute("comoda", comoda);
+        return "adauga/comoda";
+    }
+
+    @PostMapping(value = "/adauga/trimiteComoda")
+    public String trimiteComoda(@ModelAttribute Comoda comoda) {
+        saveToDatabase(comoda);
+        return "index";
+    }
+
+    private void saveToDatabase(Comoda comoda) {
+        //TODO
     }
 }
