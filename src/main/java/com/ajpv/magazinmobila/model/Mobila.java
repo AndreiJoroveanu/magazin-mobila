@@ -19,18 +19,4 @@ public class Mobila {
     private double length;
     private double width;
     private double price;
-
-    /*
-    public Mobila(int nr, String category, String name, String color, String material, double height, double length, double width, double price) {
-        this.nr = nr;
-        this.category = category;
-        this.name = name;
-        this.color = color;
-        this.material = material;
-        this.height = height;
-        this.length = length;
-        this.width = width;
-        this.price = price;
-    }
-    */
 }
