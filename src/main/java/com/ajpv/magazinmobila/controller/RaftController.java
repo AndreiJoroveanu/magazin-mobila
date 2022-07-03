@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 public class RaftController {
     @GetMapping(value = "/rafturi")
-    public String index(Model model){
+    public String raft(Model model){
         List<Raft> listaRaft = List.of(
                 Raft.builder()
                         .nr(1)
@@ -141,14 +141,15 @@ public class RaftController {
     }
 
     @GetMapping(value = "/adauga/raft")
-    public String adaugaRaft(Model model) {
+    public String addRaft(Model model) {
         Raft raft = Raft.builder().build();
+        raft.setCategory("Raft");
         model.addAttribute("raft", raft);
         return "adauga/raft";
     }
 
     @PostMapping(value = "/adauga/trimiteRaft")
-    public String trimiteRaft(@ModelAttribute Raft raft) {
+    public String submitRaft(@ModelAttribute Raft raft) {
         saveToDatabase(raft);
         return "index";
     }

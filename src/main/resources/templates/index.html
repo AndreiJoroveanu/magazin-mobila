@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Magazin Mobilă</title>
-    <link rel="icon" type="image/x-icon" th:href="@{assets/brand/cart-icon.png}">
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/brand/cart-icon.png}">
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
@@ -11,19 +11,31 @@
 <nav class="navbar fixed-top navbar-expand-sm shadow mb-2" style="background-color: #e3f2fd;">
     <div class="container-lg">
         <a class="navbar-brand" href="/index">
-            <img width="32" height="32" class="d-inline-block align-text-top" th:src="@{assets/brand/cart-icon.png}" src="" alt="" >
+            <img width="32" height="32" class="d-inline-block align-text-top" th:src="@{/assets/brand/cart-icon.png}" src="" alt="" >
             Acasă
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPage" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Deschideți meniul">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="collapse navbar-collapse" id="navbarPage">
             <div class="navbar-nav">
                 <a class="nav-link" href="/birouri">Birouri</a>
                 <a class="nav-link" href="/scaune">Scaune</a>
                 <a class="nav-link" href="/biblioteci">Biblioteci</a>
                 <a class="nav-link" href="/rafturi">Rafturi</a>
                 <a class="nav-link" href="/comode">Comode</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Adăugați
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-sm-end dropdown-menu-md-start shadow mt-3" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/adauga/birou">Adăugați birou</a>
+                        <a class="dropdown-item" href="/adauga/scaun">Adăugați scaun</a>
+                        <a class="dropdown-item" href="/adauga/biblioteca">Adăugați bibliotecă</a>
+                        <a class="dropdown-item" href="/adauga/raft">Adăugați raft</a>
+                        <a class="dropdown-item" href="/adauga/comoda">Adăugați comodă</a>
+                    </ul>
+                </li>
             </div>
         </div>
     </div>
@@ -42,7 +54,7 @@
         <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2 g-4">
             <div class="col">
                 <div class="card shadow">
-                    <img th:src="@{assets/categories/birou.webp}" class="card-img-top" src="" alt="">
+                    <img th:src="@{/assets/categories/birou.webp}" class="card-img-top" src="" alt="">
                     <div class="card-body">
                         <h5 class="card-title">Birouri</h5>
                         <a href="/birouri" class="btn btn-primary shadow">Mergeți</a>
@@ -51,7 +63,7 @@
             </div>
             <div class="col">
                 <div class="card shadow">
-                    <img th:src="@{assets/categories/scaun.webp}" class="card-img-top" src="" alt="">
+                    <img th:src="@{/assets/categories/scaun.webp}" class="card-img-top" src="" alt="">
                     <div class="card-body">
                         <h5 class="card-title">Scaune</h5>
                         <a href="/scaune" class="btn btn-primary shadow">Mergeți</a>
@@ -60,7 +72,7 @@
             </div>
             <div class="col">
                 <div class="card shadow">
-                    <img th:src="@{assets/categories/biblioteca.webp}" class="card-img-top" src="" alt="">
+                    <img th:src="@{/assets/categories/biblioteca.webp}" class="card-img-top" src="" alt="">
                     <div class="card-body">
                         <h5 class="card-title">Biblioteci</h5>
                         <a href="/biblioteci" class="btn btn-primary shadow">Mergeți</a>
@@ -69,7 +81,7 @@
             </div>
             <div class="col">
                 <div class="card shadow">
-                    <img th:src="@{assets/categories/raft.webp}" class="card-img-top" src="" alt="">
+                    <img th:src="@{/assets/categories/raft.webp}" class="card-img-top" src="" alt="">
                     <div class="card-body">
                         <h5 class="card-title">Rafturi</h5>
                         <a href="/rafturi" class="btn btn-primary shadow">Mergeți</a>
@@ -78,7 +90,7 @@
             </div>
             <div class="col">
                 <div class="card shadow">
-                    <img th:src="@{assets/categories/comoda.webp}" class="card-img-top" src="" alt="">
+                    <img th:src="@{/assets/categories/comoda.webp}" class="card-img-top" src="" alt="">
                     <div class="card-body">
                         <h5 class="card-title">Comode</h5>
                         <a href="/comode" class="btn btn-primary shadow">Mergeți</a>
@@ -89,5 +101,5 @@
     </div>
 </div>
 </body>
-<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </html>

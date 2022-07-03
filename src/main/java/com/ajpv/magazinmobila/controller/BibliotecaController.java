@@ -12,7 +12,7 @@ import java.util.List;
 @Controller
 public class BibliotecaController {
     @GetMapping(value = "/biblioteci")
-    public String index(Model model){
+    public String biblioteca(Model model){
         List<Biblioteca> listaBiblioteca = List.of(
                 Biblioteca.builder()
                         .nr(1)
@@ -139,14 +139,15 @@ public class BibliotecaController {
     }
 
     @GetMapping(value = "/adauga/biblioteca")
-    public String adaugaBiblioteca(Model model) {
+    public String addBiblioteca(Model model) {
         Biblioteca biblioteca = Biblioteca.builder().build();
+        biblioteca.setCategory("Biblioteca");
         model.addAttribute("biblioteca", biblioteca);
         return "adauga/biblioteca";
     }
 
     @PostMapping(value = "/adauga/trimiteBiblioteca")
-    public String trimiteBiblioteca(@ModelAttribute Biblioteca biblioteca) {
+    public String submitBiblioteca(@ModelAttribute Biblioteca biblioteca) {
         saveToDatabase(biblioteca);
         return "index";
     }

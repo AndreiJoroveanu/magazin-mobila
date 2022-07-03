@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 public class ScaunController {
     @GetMapping(value = "/scaune")
-    public String index(Model model){
+    public String scaun(Model model){
         List<Scaun> listaScaun = List.of(
                 Scaun.builder()
                         .nr(1)
@@ -151,14 +151,15 @@ public class ScaunController {
     }
 
     @GetMapping(value = "/adauga/scaun")
-    public String adaugaScaun(Model model) {
+    public String addScaun(Model model) {
         Scaun scaun = Scaun.builder().build();
+        scaun.setCategory("Scaun");
         model.addAttribute("scaun", scaun);
         return "adauga/scaun";
     }
 
     @PostMapping(value = "/adauga/trimiteScaun")
-    public String trimiteScaun(@ModelAttribute Scaun scaun) {
+    public String submitScaun(@ModelAttribute Scaun scaun) {
         saveToDatabase(scaun);
         return "index";
     }

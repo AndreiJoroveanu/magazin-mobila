@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 public class ComodaController {
     @GetMapping(value = "/comode")
-    public String index(Model model){
+    public String comoda(Model model){
         List<Comoda> listaComoda = List.of(
                 Comoda.builder()
                         .nr(1)
@@ -140,14 +140,15 @@ public class ComodaController {
     }
 
     @GetMapping(value = "/adauga/comoda")
-    public String adaugaComoda(Model model) {
+    public String addComoda(Model model) {
         Comoda comoda = Comoda.builder().build();
+        comoda.setCategory("Comoda");
         model.addAttribute("comoda", comoda);
         return "adauga/comoda";
     }
 
     @PostMapping(value = "/adauga/trimiteComoda")
-    public String trimiteComoda(@ModelAttribute Comoda comoda) {
+    public String submitComoda(@ModelAttribute Comoda comoda) {
         saveToDatabase(comoda);
         return "index";
     }

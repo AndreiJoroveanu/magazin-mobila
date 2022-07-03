@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 public class BirouController {
     @GetMapping(value = "/birouri")
-    public String index(Model model){
+    public String birou(Model model){
         List<Birou> listaBirou = List.of(
                 Birou.builder()
                         .nr(1)
@@ -140,14 +140,15 @@ public class BirouController {
     }
 
     @GetMapping(value = "/adauga/birou")
-    public String adaugaBirou(Model model) {
+    public String addBirou(Model model) {
         Birou birou = Birou.builder().build();
+        birou.setCategory("Birou");
         model.addAttribute("birou", birou);
         return "adauga/birou";
     }
 
     @PostMapping(value = "/adauga/trimiteBirou")
-    public String trimiteBirou(@ModelAttribute Birou birou) {
+    public String submitBirou(@ModelAttribute Birou birou) {
         saveToDatabase(birou);
         return "index";
     }
