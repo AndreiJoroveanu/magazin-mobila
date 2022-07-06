@@ -1,23 +1,28 @@
 package com.ajpv.magazinmobila.controller;
 
-import com.ajpv.magazinmobila.model.Birou;
-import com.ajpv.magazinmobila.model.Comoda;
+import com.ajpv.magazinmobila.model.Biblioteca;
 import com.ajpv.magazinmobila.model.Raft;
+import com.ajpv.magazinmobila.repository.RaftRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
 @Controller
 public class RaftController {
+    @Autowired
+    RaftRepository raftRepository;
+
     @GetMapping(value = "/rafturi")
     public String raft(Model model){
         List<Raft> listaRaft = List.of(
                 Raft.builder()
-                        .nr(1)
+                        .id(1)
                         .category("Raft")
                         .name("Kring Capri")
                         .color("Alb/Lemn natur")
@@ -29,7 +34,7 @@ public class RaftController {
                         .build(),
 
                 Raft.builder()
-                        .nr(2)
+                        .id(2)
                         .category("Raft (Pe roti)")
                         .name("Homcom")
                         .color("Argintiu")
@@ -41,7 +46,7 @@ public class RaftController {
                         .build(),
 
                 Raft.builder()
-                        .nr(3)
+                        .id(3)
                         .category("Raft")
                         .name("Wenge")
                         .color("Wenge")
@@ -53,7 +58,7 @@ public class RaftController {
                         .build(),
 
                 Raft.builder()
-                        .nr(4)
+                        .id(4)
                         .category("Raft (Suport router)")
                         .name("SenseConnect")
                         .color("Alb")
@@ -65,7 +70,7 @@ public class RaftController {
                         .build(),
 
                 Raft.builder()
-                        .nr(5)
+                        .id(5)
                         .category("Raft")
                         .name("Homcom")
                         .color("Negru")
@@ -77,7 +82,7 @@ public class RaftController {
                         .build(),
 
                 Raft.builder()
-                        .nr(6)
+                        .id(6)
                         .category("Raft")
                         .name("Kring Provence")
                         .color("Lemn Natur")
@@ -89,7 +94,7 @@ public class RaftController {
                         .build(),
 
                 Raft.builder()
-                        .nr(7)
+                        .id(7)
                         .category("Raft (Pe roti)")
                         .name("ProCart")
                         .color("Negru")
@@ -101,7 +106,7 @@ public class RaftController {
                         .build(),
 
                 Raft.builder()
-                        .nr(8)
+                        .id(8)
                         .category("Raft")
                         .name("Sonoma")
                         .color("Stejar Sonoma")
@@ -113,7 +118,7 @@ public class RaftController {
                         .build(),
 
                 Raft.builder()
-                        .nr(9)
+                        .id(9)
                         .category("Raft")
                         .name("STRATEGIC 5 Polite")
                         .color("Gri")
@@ -125,7 +130,7 @@ public class RaftController {
                         .build(),
 
                 Raft.builder()
-                        .nr(10)
+                        .id(10)
                         .category("Raft")
                         .name("STERK")
                         .color("Alb")
@@ -148,13 +153,31 @@ public class RaftController {
         return "adauga/raft";
     }
 
-    @PostMapping(value = "/adauga/trimiteRaft")
+    @PostMapping(value = "/adauga/submitRaft")
     public String submitRaft(@ModelAttribute Raft raft) {
         saveToDatabase(raft);
         return "index";
     }
 
     private void saveToDatabase(Raft raft) {
-        //TODO
+        raftRepository.save(raft);
+    }
+
+    @GetMapping(value = "/createRaft")
+    @ResponseBody
+    public String createRaft(){
+        Raft raft = Raft.builder().build();
+        raftRepository.save(raft);
+        return "OK!";
+    }
+
+    @GetMapping(value = "/showRaft")
+    @ResponseBody
+    public String showRaft(){
+        List<Raft> raftList = raftRepository.findAll();
+        for (Raft r : raftList){
+            System.out.println(r.toString());
+        }
+        return "OK!";
     }
 }

@@ -50,21 +50,10 @@
 <div class="my-2 container-md">
     <h2>Adăugați un scaun</h2>
     <p>Introduceți datele obiectului</p>
-    <form th:action="@{/submitScaun}" th:object="${scaun}" method="post">
-        <div class="row row-cols-2">
-            <div class="col">
-                <div class="form-floating shadow mb-3">
-                    <input type="number" class="form-control" id="inputNr" placeholder="Nr." th:field="${scaun.nr}">
-                    <label for="inputNr">Număr</label>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-floating shadow mb-3">
-                    <input type="text" class="form-control" id="inputCategory" placeholder="Categorie" th:field="${scaun.category}">
-                    <label for="inputCategory">Categorie</label>
-                </div>
-            </div>
+    <form th:action="@{submitScaun}" th:object="${scaun}" method="post">
+        <div class="form-floating shadow mb-3">
+            <input type="text" class="form-control" id="inputCategory" placeholder="Categorie" th:field="${scaun.category}">
+            <label for="inputCategory">Categorie</label>
         </div>
 
         <div class="form-floating shadow mb-3">
@@ -89,8 +78,8 @@
 
             <div class="col">
                 <div class="form-floating shadow mb-3">
-                    <input type="number" class="form-control" id="inputMaxWeight" placeholder="Pret" th:field="${scaun.maxWeight}">
-                    <label for="inputMaxWeight">Preț</label>
+                    <input type="number" class="form-control" id="inputMaxWeight" placeholder="Greutate maximă" th:field="${scaun.maxWeight}">
+                    <label for="inputMaxWeight">Greutate maximă</label>
                 </div>
             </div>
         </div>

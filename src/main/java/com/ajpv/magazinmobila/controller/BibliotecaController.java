@@ -1,21 +1,27 @@
 package com.ajpv.magazinmobila.controller;
 
 import com.ajpv.magazinmobila.model.Biblioteca;
+import com.ajpv.magazinmobila.repository.BibliotecaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
 @Controller
 public class BibliotecaController {
+    @Autowired
+    BibliotecaRepository bibliotecaRepository;
+
     @GetMapping(value = "/biblioteci")
     public String biblioteca(Model model){
         List<Biblioteca> listaBiblioteca = List.of(
                 Biblioteca.builder()
-                        .nr(1)
+                        .id(1)
                         .category("Biblioteca")
                         .name("Kring Marseille")
                         .color("Lemn natur")
@@ -27,7 +33,7 @@ public class BibliotecaController {
                         .build(),
 
                 Biblioteca.builder()
-                        .nr(2)
+                        .id(2)
                         .category("Biblioteca")
                         .name("Homcom")
                         .color("Maro/Negru")
@@ -39,7 +45,7 @@ public class BibliotecaController {
                         .build(),
 
                 Biblioteca.builder()
-                        .nr(3)
+                        .id(3)
                         .category("Biblioteca")
                         .name("Irim Hristo")
                         .color("Maro")
@@ -51,7 +57,7 @@ public class BibliotecaController {
                         .build(),
 
                 Biblioteca.builder()
-                        .nr(4)
+                        .id(4)
                         .category("Biblioteca")
                         .name("Kring Ashford")
                         .color("Maro/Alb")
@@ -63,7 +69,7 @@ public class BibliotecaController {
                         .build(),
 
                 Biblioteca.builder()
-                        .nr(5)
+                        .id(5)
                         .category("Biblioteca (Raft carti)")
                         .name("MO6070")
                         .color("Alb")
@@ -75,7 +81,7 @@ public class BibliotecaController {
                         .build(),
 
                 Biblioteca.builder()
-                        .nr(6)
+                        .id(6)
                         .category("Biblioteca")
                         .name("Kring Bath")
                         .color("Alb/Maro")
@@ -87,7 +93,7 @@ public class BibliotecaController {
                         .build(),
 
                 Biblioteca.builder()
-                        .nr(7)
+                        .id(7)
                         .category("Biblioteca")
                         .name("Irim Clara")
                         .color("Alb/Maro")
@@ -99,7 +105,7 @@ public class BibliotecaController {
                         .build(),
 
                 Biblioteca.builder()
-                        .nr(8)
+                        .id(8)
                         .category("Biblioteca")
                         .name("MO6071")
                         .color("Alb")
@@ -111,7 +117,7 @@ public class BibliotecaController {
                         .build(),
 
                 Biblioteca.builder()
-                        .nr(9)
+                        .id(9)
                         .category("Biblioteca")
                         .name("Kring Barking")
                         .color("Wenge")
@@ -123,7 +129,7 @@ public class BibliotecaController {
                         .build(),
 
                 Biblioteca.builder()
-                        .nr(10)
+                        .id(10)
                         .category("Biblioteca")
                         .name("Sonoma")
                         .color("Sonoma")
@@ -146,13 +152,31 @@ public class BibliotecaController {
         return "adauga/biblioteca";
     }
 
-    @PostMapping(value = "/adauga/trimiteBiblioteca")
+    @PostMapping(value = "/adauga/submitBiblioteca")
     public String submitBiblioteca(@ModelAttribute Biblioteca biblioteca) {
         saveToDatabase(biblioteca);
         return "index";
     }
 
     private void saveToDatabase(Biblioteca biblioteca) {
-        //TODO
+        bibliotecaRepository.save(biblioteca);
+    }
+
+    @GetMapping(value = "/createBiblioteca")
+    @ResponseBody
+    public String createBiblioteca(){
+        Biblioteca biblioteca = Biblioteca.builder().build();
+        bibliotecaRepository.save(biblioteca);
+        return "OK!";
+    }
+
+    @GetMapping(value = "/showBiblioteca")
+    @ResponseBody
+    public String showBiblioteca(){
+        List<Biblioteca> bibliotecaList = bibliotecaRepository.findAll();
+        for (Biblioteca bb : bibliotecaList){
+            System.out.println(bb.toString());
+        }
+        return "OK!";
     }
 }

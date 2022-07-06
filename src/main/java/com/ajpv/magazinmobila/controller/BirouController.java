@@ -2,21 +2,27 @@ package com.ajpv.magazinmobila.controller;
 
 import com.ajpv.magazinmobila.model.Biblioteca;
 import com.ajpv.magazinmobila.model.Birou;
+import com.ajpv.magazinmobila.repository.BirouRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
 @Controller
 public class BirouController {
+    @Autowired
+    BirouRepository birouRepository;
+
     @GetMapping(value = "/birouri")
     public String birou(Model model){
         List<Birou> listaBirou = List.of(
                 Birou.builder()
-                        .nr(1)
+                        .id(1)
                         .category("Birou")
                         .name("Nefmob Nove")
                         .color("Sonoma")
@@ -28,7 +34,7 @@ public class BirouController {
                         .build(),
 
                 Birou.builder()
-                        .nr(2)
+                        .id(2)
                         .category("Birou (Rollbox)")
                         .name("Homcom")
                         .color("Alb")
@@ -40,7 +46,7 @@ public class BirouController {
                         .build(),
 
                 Birou.builder()
-                        .nr(3)
+                        .id(3)
                         .category("Birou")
                         .name("Kring Gaming")
                         .color("Alb")
@@ -52,7 +58,7 @@ public class BirouController {
                         .build(),
 
                 Birou.builder()
-                        .nr(4)
+                        .id(4)
                         .category("Birou")
                         .name("PVC N-3")
                         .color("Alb")
@@ -64,7 +70,7 @@ public class BirouController {
                         .build(),
 
                 Birou.builder()
-                        .nr(5)
+                        .id(5)
                         .category("Birou")
                         .name("Homcom")
                         .color("Maro")
@@ -76,7 +82,7 @@ public class BirouController {
                         .build(),
 
                 Birou.builder()
-                        .nr(6)
+                        .id(6)
                         .category("Birou")
                         .name("Adria")
                         .color("Alb/Stejar")
@@ -88,7 +94,7 @@ public class BirouController {
                         .build(),
 
                 Birou.builder()
-                        .nr(7)
+                        .id(7)
                         .category("Birou")
                         .name("Akord Furniture Factory")
                         .color("Alb")
@@ -100,7 +106,7 @@ public class BirouController {
                         .build(),
 
                 Birou.builder()
-                        .nr(8)
+                        .id(8)
                         .category("Birou")
                         .name("Kring Edge")
                         .color("Crem/Negru")
@@ -112,7 +118,7 @@ public class BirouController {
                         .build(),
 
                 Birou.builder()
-                        .nr(9)
+                        .id(9)
                         .category("Birou")
                         .name("VASAGLE")
                         .color("Maro")
@@ -124,7 +130,7 @@ public class BirouController {
                         .build(),
 
                 Birou.builder()
-                        .nr(10)
+                        .id(10)
                         .category("Birou")
                         .name("Mobiref")
                         .color("Alb")
@@ -147,13 +153,31 @@ public class BirouController {
         return "adauga/birou";
     }
 
-    @PostMapping(value = "/adauga/trimiteBirou")
+    @PostMapping(value = "/adauga/submitBirou")
     public String submitBirou(@ModelAttribute Birou birou) {
         saveToDatabase(birou);
         return "index";
     }
 
     private void saveToDatabase(Birou birou) {
-        //TODO
+        birouRepository.save(birou);
+    }
+
+    @GetMapping(value = "/createBirou")
+    @ResponseBody
+    public String createBirou(){
+        Birou birou = Birou.builder().build();
+        birouRepository.save(birou);
+        return "OK!";
+    }
+
+    @GetMapping(value = "/showBirou")
+    @ResponseBody
+    public String showBirou(){
+        List<Birou> birouList = birouRepository.findAll();
+        for (Birou br : birouList){
+            System.out.println(br.toString());
+        }
+        return "OK!";
     }
 }

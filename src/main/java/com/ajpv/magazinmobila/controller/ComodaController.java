@@ -1,22 +1,28 @@
 package com.ajpv.magazinmobila.controller;
 
-import com.ajpv.magazinmobila.model.Birou;
+import com.ajpv.magazinmobila.model.Biblioteca;
 import com.ajpv.magazinmobila.model.Comoda;
+import com.ajpv.magazinmobila.repository.ComodaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
 @Controller
 public class ComodaController {
+    @Autowired
+    ComodaRepository comodaRepository;
+
     @GetMapping(value = "/comode")
     public String comoda(Model model){
         List<Comoda> listaComoda = List.of(
                 Comoda.builder()
-                        .nr(1)
+                        .id(1)
                         .category("Comoda (TV)")
                         .name("Irim Bella")
                         .color("Sonoma")
@@ -28,7 +34,7 @@ public class ComodaController {
                         .build(),
 
                 Comoda.builder()
-                        .nr(2)
+                        .id(2)
                         .category("Comoda")
                         .name("Homcom")
                         .color("Maro")
@@ -40,7 +46,7 @@ public class ComodaController {
                         .build(),
 
                 Comoda.builder()
-                        .nr(3)
+                        .id(3)
                         .category("Comoda")
                         .name("Irim Spark")
                         .color("Sonoma")
@@ -52,7 +58,7 @@ public class ComodaController {
                         .build(),
 
                 Comoda.builder()
-                        .nr(4)
+                        .id(4)
                         .category("Comoda")
                         .name("Mirjan 24")
                         .color("Alb")
@@ -64,7 +70,7 @@ public class ComodaController {
                         .build(),
 
                 Comoda.builder()
-                        .nr(5)
+                        .id(5)
                         .category("Comoda")
                         .name("Model 6080")
                         .color("Mesteacan")
@@ -76,7 +82,7 @@ public class ComodaController {
                         .build(),
 
                 Comoda.builder()
-                        .nr(6)
+                        .id(6)
                         .category("Comoda")
                         .name("Osko 120 OK6")
                         .color("Alb")
@@ -88,7 +94,7 @@ public class ComodaController {
                         .build(),
 
                 Comoda.builder()
-                        .nr(7)
+                        .id(7)
                         .category("Comoda")
                         .name("K Akord Furniture Factory")
                         .color("Alb")
@@ -100,7 +106,7 @@ public class ComodaController {
                         .build(),
 
                 Comoda.builder()
-                        .nr(8)
+                        .id(8)
                         .category("Comoda")
                         .name("Irim Faust")
                         .color("Nuc/Alb")
@@ -112,7 +118,7 @@ public class ComodaController {
                         .build(),
 
                 Comoda.builder()
-                        .nr(9)
+                        .id(9)
                         .category("Comoda")
                         .name("Akord Furniture Factory")
                         .color("Alb")
@@ -124,7 +130,7 @@ public class ComodaController {
                         .build(),
 
                 Comoda.builder()
-                        .nr(10)
+                        .id(10)
                         .category("Comoda")
                         .name("Kring Spicy")
                         .color("Multicolor")
@@ -147,13 +153,31 @@ public class ComodaController {
         return "adauga/comoda";
     }
 
-    @PostMapping(value = "/adauga/trimiteComoda")
+    @PostMapping(value = "/adauga/submitComoda")
     public String submitComoda(@ModelAttribute Comoda comoda) {
         saveToDatabase(comoda);
         return "index";
     }
 
     private void saveToDatabase(Comoda comoda) {
-        //TODO
+        comodaRepository.save(comoda);
+    }
+
+    @GetMapping(value = "/createComoda")
+    @ResponseBody
+    public String createComoda(){
+        Comoda comoda = Comoda.builder().build();
+        comodaRepository.save(comoda);
+        return "OK!";
+    }
+
+    @GetMapping(value = "/showComoda")
+    @ResponseBody
+    public String showComoda(){
+        List<Comoda> comodaList = comodaRepository.findAll();
+        for (Comoda c : comodaList){
+            System.out.println(c.toString());
+        }
+        return "OK!";
     }
 }

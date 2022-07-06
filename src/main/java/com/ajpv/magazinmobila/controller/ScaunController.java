@@ -1,23 +1,28 @@
 package com.ajpv.magazinmobila.controller;
 
-import com.ajpv.magazinmobila.model.Birou;
-import com.ajpv.magazinmobila.model.Raft;
+import com.ajpv.magazinmobila.model.Biblioteca;
 import com.ajpv.magazinmobila.model.Scaun;
+import com.ajpv.magazinmobila.repository.ScaunRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
 @Controller
 public class ScaunController {
+    @Autowired
+    ScaunRepository scaunRepository;
+
     @GetMapping(value = "/scaune")
     public String scaun(Model model){
         List<Scaun> listaScaun = List.of(
                 Scaun.builder()
-                        .nr(1)
+                        .id(1)
                         .category("Scaun")
                         .name("Kring New Fit")
                         .color("Negru")
@@ -30,7 +35,7 @@ public class ScaunController {
                         .build(),
 
                 Scaun.builder()
-                        .nr(2)
+                        .id(2)
                         .category("Scaun")
                         .name("Kulik System Business")
                         .color("Negru")
@@ -43,7 +48,7 @@ public class ScaunController {
                         .build(),
 
                 Scaun.builder()
-                        .nr(3)
+                        .id(3)
                         .category("Scaun")
                         .name("Kring Fit")
                         .color("Negru")
@@ -56,7 +61,7 @@ public class ScaunController {
                         .build(),
 
                 Scaun.builder()
-                        .nr(4)
+                        .id(4)
                         .category("Scaun")
                         .name("Kring Klaus")
                         .color("Negru")
@@ -69,7 +74,7 @@ public class ScaunController {
                         .build(),
 
                 Scaun.builder()
-                        .nr(5)
+                        .id(5)
                         .category("Scaun")
                         .name("Relax Vinsetto")
                         .color("Gri")
@@ -82,7 +87,7 @@ public class ScaunController {
                         .build(),
 
                 Scaun.builder()
-                        .nr(6)
+                        .id(6)
                         .category("Scaun")
                         .name("Ergoplus Joy")
                         .color("Negru")
@@ -95,7 +100,7 @@ public class ScaunController {
                         .build(),
 
                 Scaun.builder()
-                        .nr(7)
+                        .id(7)
                         .category("Scaun")
                         .name("Kring Bokai")
                         .color("Negru")
@@ -108,7 +113,7 @@ public class ScaunController {
                         .build(),
 
                 Scaun.builder()
-                        .nr(8)
+                        .id(8)
                         .category("Scaun")
                         .name("Ergoplus Joy-H")
                         .color("Negru")
@@ -121,7 +126,7 @@ public class ScaunController {
                         .build(),
 
                 Scaun.builder()
-                        .nr(9)
+                        .id(9)
                         .category("Scaun")
                         .name("Timeless Tools")
                         .color("Negru")
@@ -134,7 +139,7 @@ public class ScaunController {
                         .build(),
 
                 Scaun.builder()
-                        .nr(10)
+                        .id(10)
                         .category("Scaun")
                         .name("Kring Rome")
                         .color("Bej")
@@ -158,13 +163,31 @@ public class ScaunController {
         return "adauga/scaun";
     }
 
-    @PostMapping(value = "/adauga/trimiteScaun")
+    @PostMapping(value = "/adauga/submitScaun")
     public String submitScaun(@ModelAttribute Scaun scaun) {
         saveToDatabase(scaun);
         return "index";
     }
 
     private void saveToDatabase(Scaun scaun) {
-        //TODO
+        scaunRepository.save(scaun);
+    }
+
+    @GetMapping(value = "/createScaun")
+    @ResponseBody
+    public String createScaun(){
+        Scaun scaun = Scaun.builder().build();
+        scaunRepository.save(scaun);
+        return "OK!";
+    }
+
+    @GetMapping(value = "/showScaun")
+    @ResponseBody
+    public String showScaun(){
+        List<Scaun> scaunList = scaunRepository.findAll();
+        for (Scaun s : scaunList){
+            System.out.println(s.toString());
+        }
+        return "OK!";
     }
 }
