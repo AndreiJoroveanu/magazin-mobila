@@ -77,6 +77,38 @@
         </tbody>
     </table>
 </div>
+
+<!-- Clasă tabel din baza de date -->
+<div class="mt-2 container-xl">
+    <table class="table bg-body table-striped table-hover rounded shadow">
+        <thead>
+        <tr>
+            <td>Nr. Int.</td>
+            <td>Categorie</td>
+            <td>Nume</td>
+            <td>Culoare</td>
+            <td>Material</td>
+            <td>Înălțime</td>
+            <td>Lungime</td>
+            <td>Lățime</td>
+            <td>Preț</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="birou : ${birouList}">
+            <td th:text="${birou.id}+'.'"></td>
+            <td th:text="${birou.category}"></td>
+            <td th:text="${birou.name}"></td>
+            <td th:text="${birou.color}"></td>
+            <td th:text="${birou.material}"></td>
+            <td th:text="${birou.height}+' cm'"></td>
+            <td th:text="${birou.length}+' cm'"></td>
+            <td th:text="${birou.width}+' cm'"></td>
+            <td th:text="${birou.price}+' lei'"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </html>

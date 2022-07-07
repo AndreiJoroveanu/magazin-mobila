@@ -77,6 +77,38 @@
         </tbody>
     </table>
 </div>
+
+<!-- Clasă tabel din baza de date -->
+<div class="mt-2 container-xl">
+    <table class="table bg-body table-striped table-hover rounded shadow">
+        <thead>
+        <tr>
+            <td>Nr. Int.</td>
+            <td>Categorie</td>
+            <td>Nume</td>
+            <td>Culoare</td>
+            <td>Material</td>
+            <td>Înălțime</td>
+            <td>Lungime</td>
+            <td>Lățime</td>
+            <td>Preț</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="biblioteca : ${bibliotecaList}">
+            <td th:text="${biblioteca.id}+'.'"></td>
+            <td th:text="${biblioteca.category}"></td>
+            <td th:text="${biblioteca.name}"></td>
+            <td th:text="${biblioteca.color}"></td>
+            <td th:text="${biblioteca.material}"></td>
+            <td th:text="${biblioteca.height}+' cm'"></td>
+            <td th:text="${biblioteca.length}+' cm'"></td>
+            <td th:text="${biblioteca.width}+' cm'"></td>
+            <td th:text="${biblioteca.price}+' lei'"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </html>

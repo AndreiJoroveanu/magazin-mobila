@@ -1,6 +1,5 @@
 package com.ajpv.magazinmobila.controller;
 
-import com.ajpv.magazinmobila.model.Biblioteca;
 import com.ajpv.magazinmobila.model.Raft;
 import com.ajpv.magazinmobila.repository.RaftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -142,6 +141,10 @@ public class RaftController {
                         .build()
         );
         model.addAttribute("listaRaft", listaRaft);
+
+        List<Raft> raftList = raftRepository.findAll();
+        model.addAttribute("raftList", raftList);
+
         return "rafturi";
     }
 

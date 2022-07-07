@@ -141,6 +141,10 @@ public class BibliotecaController {
                         .build()
         );
         model.addAttribute("listaBiblioteca", listaBiblioteca);
+
+        List<Biblioteca> bibliotecaList = bibliotecaRepository.findAll();
+        model.addAttribute("bibliotecaList", bibliotecaList);
+
         return "biblioteci";
     }
 

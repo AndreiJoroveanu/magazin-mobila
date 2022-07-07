@@ -1,6 +1,5 @@
 package com.ajpv.magazinmobila.controller;
 
-import com.ajpv.magazinmobila.model.Biblioteca;
 import com.ajpv.magazinmobila.model.Comoda;
 import com.ajpv.magazinmobila.repository.ComodaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -142,6 +141,10 @@ public class ComodaController {
                         .build()
         );
         model.addAttribute("listaComoda", listaComoda);
+
+        List<Comoda> comodaList = comodaRepository.findAll();
+        model.addAttribute("comodaList", comodaList);
+
         return "comode";
     }
 

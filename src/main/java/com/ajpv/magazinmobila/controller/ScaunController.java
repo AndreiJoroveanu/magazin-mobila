@@ -1,6 +1,5 @@
 package com.ajpv.magazinmobila.controller;
 
-import com.ajpv.magazinmobila.model.Biblioteca;
 import com.ajpv.magazinmobila.model.Scaun;
 import com.ajpv.magazinmobila.repository.ScaunRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -152,6 +151,10 @@ public class ScaunController {
                         .build()
         );
         model.addAttribute("listaScaun", listaScaun);
+
+        List<Scaun> scaunList = scaunRepository.findAll();
+        model.addAttribute("scaunList", scaunList);
+
         return "scaune";
     }
 

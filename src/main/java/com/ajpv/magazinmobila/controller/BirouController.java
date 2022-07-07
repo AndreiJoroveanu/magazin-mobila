@@ -1,6 +1,5 @@
 package com.ajpv.magazinmobila.controller;
 
-import com.ajpv.magazinmobila.model.Biblioteca;
 import com.ajpv.magazinmobila.model.Birou;
 import com.ajpv.magazinmobila.repository.BirouRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -142,6 +141,10 @@ public class BirouController {
                         .build()
         );
         model.addAttribute("listaBirou", listaBirou);
+
+        List<Birou> birouList = birouRepository.findAll();
+        model.addAttribute("birouList", birouList);
+
         return "birouri";
     }
 
