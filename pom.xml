@@ -12,7 +12,7 @@
 	<artifactId>magazin-mobila</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>magazin-mobila</name>
-	<description>Tema proiect pentru Joroveanu Andrei si Popa Valentin</description>
+	<description>Temă proiect pentru Joroveanu Andrei și Popa Valentin</description>
 	<properties>
 		<java.version>18</java.version>
 	</properties>

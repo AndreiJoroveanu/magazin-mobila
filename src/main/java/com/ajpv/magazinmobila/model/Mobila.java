@@ -5,10 +5,8 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 
 @Getter
@@ -24,20 +22,19 @@ public class Mobila {
     private String name;
     private String color;
     private String material;
-    private double height;
-    private double length;
-    private double width;
-    private double price;
+    private BigDecimal price;
 
-    public Mobila(int id, String category, String name, String color, String material, double height, double length, double width, double price) {
+    @ManyToOne
+    @JoinColumn(name = "id_store")
+    private Magazin magazin;
+
+    public Mobila(int id, String category, String name, String color, String material, BigDecimal price, Magazin magazin) {
         this.id = id;
         this.category = category;
         this.name = name;
         this.color = color;
         this.material = material;
-        this.height = height;
-        this.length = length;
-        this.width = width;
         this.price = price;
+        this.magazin = magazin;
     }
 }

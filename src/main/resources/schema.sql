@@ -1,14 +1,19 @@
+create table t_magazin(
+    id integer auto_increment,
+    name varchar(50),
+    primary key (id)
+);
+
 create table t_birou(
     id integer auto_increment,
     category varchar(50),
     name varchar(50),
     color varchar(50),
     material varchar(50),
-    height integer,
-    length integer,
-    width integer,
-    price integer,
-    primary key(id)
+    price decimal(7, 1),
+    id_store integer,
+    primary key (id),
+    foreign key (id_store) references t_magazin(id)
 );
 
 create table t_scaun(
@@ -18,11 +23,10 @@ create table t_scaun(
     color varchar(50),
     material varchar(50),
     max_weight integer,
-    height integer,
-    length integer,
-    width integer,
-    price integer,
-    primary key(id)
+    price decimal(7, 1),
+    id_store integer,
+    primary key (id),
+    foreign key (id_store) references t_magazin(id)
 );
 
 create table t_biblioteca(
@@ -31,12 +35,11 @@ create table t_biblioteca(
     name varchar(50),
     color varchar(50),
     material varchar(50),
-    height integer,
-    length integer,
-    width integer,
-    price integer,
-    primary key(id)
-);
+    price decimal(7, 1),
+    id_store integer,
+    primary key (id),
+    foreign key (id_store) references t_magazin(id)
+ );
 
 create table t_raft(
     id integer auto_increment,
@@ -44,11 +47,10 @@ create table t_raft(
     name varchar(50),
     color varchar(50),
     material varchar(50),
-    height integer,
-    length integer,
-    width integer,
-    price integer,
-    primary key(id)
+    price decimal(7, 1),
+    id_store integer,
+    primary key (id),
+    foreign key (id_store) references t_magazin(id)
 );
 
 create table t_comoda(
@@ -57,9 +59,8 @@ create table t_comoda(
     name varchar(50),
     color varchar(50),
     material varchar(50),
-    height integer,
-    length integer,
-    width integer,
-    price integer,
-    primary key(id)
-);
+    price decimal(7, 1),
+    id_store integer,
+    primary key (id),
+    foreign key (id_store) references t_magazin(id)
+ );

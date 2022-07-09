@@ -5,6 +5,15 @@
     <title>Scaune</title>
     <link rel="icon" type="image/x-icon" th:href="@{/assets/brand/cart-icon.png}">
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <style>
+        body {
+            background: url('/assets/background.jpg') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+        }
+    </style>
 </head>
 <body>
 <!-- Clasă Navbar -->
@@ -46,69 +55,29 @@
     <div class="vr"></div>
 </div>
 
-<!-- Clasă tabel -->
-<div class="mt-2 container-xl">
-    <table class="table bg-body table-striped table-hover rounded shadow">
-        <thead>
-        <tr>
-            <td>Nr. Int.</td>
-            <td>Categorie</td>
-            <td>Nume</td>
-            <td>Culoare</td>
-            <td>Material</td>
-            <td>Greutate maximă</td>
-            <td>Înălțime</td>
-            <td>Lungime</td>
-            <td>Lățime</td>
-            <td>Preț</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="scaun : ${listaScaun}">
-            <td th:text="${scaun.id}+'.'"></td>
-            <td th:text="${scaun.category}"></td>
-            <td th:text="${scaun.name}"></td>
-            <td th:text="${scaun.color}"></td>
-            <td th:text="${scaun.material}"></td>
-            <td th:text="${scaun.maxWeight}+' kg'"></td>
-            <td th:text="${scaun.height}+' cm'"></td>
-            <td th:text="${scaun.length}+' cm'"></td>
-            <td th:text="${scaun.width}+' cm'"></td>
-            <td th:text="${scaun.price}+' lei'"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
 <!-- Clasă tabel din baza de date -->
 <div class="mt-2 container-xl">
     <table class="table bg-body table-striped table-hover rounded shadow">
         <thead>
         <tr>
-            <td>Nr. Int.</td>
             <td>Categorie</td>
             <td>Nume</td>
             <td>Culoare</td>
             <td>Material</td>
             <td>Greutate maximă</td>
-            <td>Înălțime</td>
-            <td>Lungime</td>
-            <td>Lățime</td>
             <td>Preț</td>
+            <td>Magazin</td>
         </tr>
         </thead>
         <tbody>
         <tr th:each="scaun : ${scaunList}">
-            <td th:text="${scaun.id}+'.'"></td>
             <td th:text="${scaun.category}"></td>
             <td th:text="${scaun.name}"></td>
             <td th:text="${scaun.color}"></td>
             <td th:text="${scaun.material}"></td>
             <td th:text="${scaun.maxWeight}+' kg'"></td>
-            <td th:text="${scaun.height}+' cm'"></td>
-            <td th:text="${scaun.length}+' cm'"></td>
-            <td th:text="${scaun.width}+' cm'"></td>
             <td th:text="${scaun.price}+' lei'"></td>
+            <td th:text="${scaun.magazin.name}"></td>
         </tr>
         </tbody>
     </table>

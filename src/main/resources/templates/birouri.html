@@ -5,6 +5,15 @@
     <title>Birouri</title>
     <link rel="icon" type="image/x-icon" th:href="@{/assets/brand/cart-icon.png}">
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <style>
+        body {
+            background: url('/assets/background.jpg') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+        }
+    </style>
 </head>
 <body>
 <!-- Clasă Navbar -->
@@ -46,65 +55,27 @@
     <div class="vr"></div>
 </div>
 
-<!-- Clasă tabel -->
-<div class="mt-2 container-xl">
-    <table class="table bg-body table-striped table-hover rounded shadow">
-        <thead>
-        <tr>
-            <td>Nr. Int.</td>
-            <td>Categorie</td>
-            <td>Nume</td>
-            <td>Culoare</td>
-            <td>Material</td>
-            <td>Înălțime</td>
-            <td>Lungime</td>
-            <td>Lățime</td>
-            <td>Preț</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="birou : ${listaBirou}">
-            <td th:text="${birou.id}+'.'"></td>
-            <td th:text="${birou.category}"></td>
-            <td th:text="${birou.name}"></td>
-            <td th:text="${birou.color}"></td>
-            <td th:text="${birou.material}"></td>
-            <td th:text="${birou.height}+' cm'"></td>
-            <td th:text="${birou.length}+' cm'"></td>
-            <td th:text="${birou.width}+' cm'"></td>
-            <td th:text="${birou.price}+' lei'"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
 <!-- Clasă tabel din baza de date -->
 <div class="mt-2 container-xl">
     <table class="table bg-body table-striped table-hover rounded shadow">
         <thead>
         <tr>
-            <td>Nr. Int.</td>
             <td>Categorie</td>
             <td>Nume</td>
             <td>Culoare</td>
             <td>Material</td>
-            <td>Înălțime</td>
-            <td>Lungime</td>
-            <td>Lățime</td>
             <td>Preț</td>
+            <td>Magazin</td>
         </tr>
         </thead>
         <tbody>
         <tr th:each="birou : ${birouList}">
-            <td th:text="${birou.id}+'.'"></td>
             <td th:text="${birou.category}"></td>
             <td th:text="${birou.name}"></td>
             <td th:text="${birou.color}"></td>
             <td th:text="${birou.material}"></td>
-            <td th:text="${birou.height}+' cm'"></td>
-            <td th:text="${birou.length}+' cm'"></td>
-            <td th:text="${birou.width}+' cm'"></td>
             <td th:text="${birou.price}+' lei'"></td>
+            <td th:text="${birou.magazin.name}"></td>
         </tr>
         </tbody>
     </table>

@@ -5,6 +5,15 @@
     <title>Adăugați raft</title>
     <link rel="icon" type="image/x-icon" th:href="@{/assets/brand/cart-icon.png}">
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <style>
+        body {
+            background: url('/assets/background.jpg') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+        }
+    </style>
 </head>
 <body>
 <!-- Clasă Navbar -->
@@ -77,32 +86,16 @@
             </div>
         </div>
 
-        <div class="row row-cols-3">
-            <div class="col">
-                <div class="form-floating shadow mb-3">
-                    <input type="number" class="form-control" id="inputHeight" placeholder="Inaltime" th:field="${raft.height}">
-                    <label for="inputHeight">Înălțime</label>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-floating shadow mb-3">
-                    <input type="number" class="form-control" id="inputLength" placeholder="Lungime" th:field="${raft.length}">
-                    <label for="inputLength">Lungime</label>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-floating shadow mb-3">
-                    <input type="number" class="form-control" id="inputWidth" placeholder="Latime" th:field="${raft.width}">
-                    <label for="inputWidth">Lățime</label>
-                </div>
-            </div>
-        </div>
-
         <div class="form-floating shadow mb-3">
             <input type="number" class="form-control" id="inputPrice" placeholder="Pret" th:field="${raft.price}">
             <label for="inputPrice">Preț</label>
+        </div>
+
+        <div class="form-floating shadow mb-3">
+            <select  class="form-select" id="inputMagazin" th:field="${raft.magazin.id}">
+                <option th:each="magazin : ${magazinList}" th:value="${magazin.id}" th:text="${magazin.name}"></option>
+            </select>
+            <label for="inputMagazin">Magazin</label>
         </div>
 
         <div class="d-grid gap-2 col-4 shadow mb-3 mx-auto">
