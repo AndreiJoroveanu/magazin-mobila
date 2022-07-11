@@ -7,10 +7,7 @@ import com.ajpv.magazinmobila.repository.ScaunRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -32,42 +29,41 @@ public class ScaunController {
 
     @GetMapping(value = "/adauga/scaun")
     public String addScaun(Model model) {
-        Scaun scaun = Scaun.builder().build();
-        scaun.setCategory("Scaun");
-        scaun.setPrice(BigDecimal.valueOf(0.0));
+        boolean exists = false;
+        model.addAttribute("exists", exists);
+
+        Scaun scaun = Scaun.builder().category("Scaun").price(BigDecimal.valueOf(0.0)).build();
         model.addAttribute("scaun", scaun);
 
         List<Magazin> magazinList = magazinRepository.findAll();
         model.addAttribute("magazinList", magazinList);
 
-        return "adauga/scaun";
+        return "editare/scaun";
     }
 
-    @PostMapping(value = "/adauga/submitScaun")
-    public String submitScaun(@ModelAttribute Scaun scaun) {
-        saveToDatabase(scaun);
+    @PostMapping(value = "/editeaza/scaun")
+    public String editBiblioteca(@RequestParam("scaunId") int id, Model model){
+        boolean exists = true;
+        model.addAttribute("exists", exists);
+
+        Scaun scaun = scaunRepository.findById(id).get();
+        model.addAttribute("scaun", scaun);
+
+        List<Magazin> magazinList = magazinRepository.findAll();
+        model.addAttribute("magazinList", magazinList);
+
+        return "editare/scaun";
+    }
+
+    @PostMapping(value = "/editare/submitScaun")
+    public String submitScaun(@ModelAttribute Scaun scaun, Model model) {
+        scaunRepository.save(scaun);
         return "redirect:/scaune";
     }
 
-    private void saveToDatabase(Scaun scaun) {
-        scaunRepository.save(scaun);
-    }
-
-    @GetMapping(value = "/createScaun")
-    @ResponseBody
-    public String createScaun(){
-        Scaun scaun = Scaun.builder().build();
-        scaunRepository.save(scaun);
-        return "OK!";
-    }
-
-    @GetMapping(value = "/showScaun")
-    @ResponseBody
-    public String showScaun(){
-        List<Scaun> scaunList = scaunRepository.findAll();
-        for (Scaun s : scaunList){
-            System.out.println(s.toString());
-        }
-        return "OK!";
+    @PostMapping(value = "/editare/deleteScaun")
+    public String deleteScaun(@RequestParam("scaunId") int id){
+        scaunRepository.deleteById(id);
+        return "redirect:/scaune";
     }
 }

@@ -66,6 +66,7 @@
             <td>Material</td>
             <td>Preț</td>
             <td>Magazin</td>
+            <td>Acțiune</td>
         </tr>
         </thead>
         <tbody>
@@ -76,6 +77,12 @@
             <td th:text="${biblioteca.material}"></td>
             <td th:text="${biblioteca.price}+' lei'"></td>
             <td th:text="${biblioteca.magazin.name}"></td>
+            <td>
+                <form th:action="@{/editeaza/biblioteca}" th:object="${biblioteca}" method="post">
+                    <input class="d-none" name="bibliotecaId" th:value="${biblioteca.id}">
+                    <button class="btn btn-primary">Editați</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

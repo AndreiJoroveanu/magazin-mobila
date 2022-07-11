@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Adăugați bibliotecă</title>
+    <title>Adăugați birou</title>
     <link rel="icon" type="image/x-icon" th:href="@{/assets/brand/cart-icon.png}">
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}">
     <style>
@@ -38,9 +38,9 @@
                         Adăugați
                     </a>
                     <ul class="dropdown-menu dropdown-menu-sm-end dropdown-menu-md-start shadow mt-3" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/adauga/birou">Adăugați birou</a>
+                        <a class="dropdown-item active" aria-current="page" href="/adauga/birou">Adăugați birou</a>
                         <a class="dropdown-item" href="/adauga/scaun">Adăugați scaun</a>
-                        <a class="dropdown-item active" aria-current="page" href="/adauga/biblioteca">Adăugați bibliotecă</a>
+                        <a class="dropdown-item" href="/adauga/biblioteca">Adăugați bibliotecă</a>
                         <a class="dropdown-item" href="/adauga/raft">Adăugați raft</a>
                         <a class="dropdown-item" href="/adauga/comoda">Adăugați comodă</a>
                     </ul>
@@ -57,51 +57,93 @@
 
 <!-- Formular -->
 <div class="my-2 container-md">
-    <h2>Adăugați o bibliotecă</h2>
+    <h2>Adăugați un birou</h2>
     <p>Introduceți datele obiectului</p>
-    <form th:action="@{submitBiblioteca}" th:object="${biblioteca}" method="post">
+    <form th:action="@{/editare/submitBirou}" th:object="${birou}" method="post">
+        <input type="text" class="d-none" th:field="${birou.id}">
+
         <div class="form-floating shadow mb-3">
-            <input type="text" class="form-control" id="inputCategory" placeholder="Categorie" th:field="${biblioteca.category}">
+            <input type="text" class="form-control" id="inputCategory" placeholder="Categorie" th:field="${birou.category}">
             <label for="inputCategory">Categorie</label>
         </div>
 
         <div class="form-floating shadow mb-3">
-            <input type="text" class="form-control" id="inputName" placeholder="Nume" th:field="${biblioteca.name}">
+            <input type="text" class="form-control" id="inputName" placeholder="Nume" th:field="${birou.name}">
             <label for="inputName">Nume</label>
         </div>
 
         <div class="row row-cols-2">
             <div class="col">
                 <div class="form-floating shadow mb-3">
-                    <input type="text" class="form-control" id="inputColor" placeholder="Culoare" th:field="${biblioteca.color}">
+                    <input type="text" class="form-control" id="inputColor" placeholder="Culoare" th:field="${birou.color}">
                     <label for="inputColor">Culoare</label>
                 </div>
             </div>
 
             <div class="col">
                 <div class="form-floating shadow mb-3">
-                    <input type="text" class="form-control" id="inputMaterial" placeholder="Material" th:field="${biblioteca.material}">
+                    <input type="text" class="form-control" id="inputMaterial" placeholder="Material" th:field="${birou.material}">
                     <label for="inputMaterial">Material</label>
                 </div>
             </div>
         </div>
 
         <div class="form-floating shadow mb-3">
-            <input type="number" class="form-control" id="inputPrice" placeholder="Pret" th:field="${biblioteca.price}">
+            <input type="number" class="form-control" id="inputPrice" placeholder="Pret" th:field="${birou.price}">
             <label for="inputPrice">Preț</label>
         </div>
 
         <div class="form-floating shadow mb-3">
-            <select  class="form-select" id="inputMagazin" th:field="${biblioteca.magazin.id}">
+            <select  class="form-select" id="inputMagazin" th:field="${birou.magazin.id}">
                 <option th:each="magazin : ${magazinList}" th:value="${magazin.id}" th:text="${magazin.name}"></option>
             </select>
             <label for="inputMagazin">Magazin</label>
         </div>
 
-        <div class="d-grid gap-2 col-4 shadow mb-3 mx-auto">
-            <button class="btn btn-primary shadow" type="submit">Trimiteți</button>
+        <div th:if="false == ${exists}">
+            <div class="d-grid gap-2 col-4 shadow mb-3 mx-auto">
+                <button class="btn btn-primary shadow" type="submit">Trimiteți</button>
+            </div>
+        </div>
+
+        <div th:if="true == ${exists}">
+            <div class="row row-cols-2 mb-3">
+                <div class="col">
+                    <div class="d-grid">
+                        <button class="btn btn-primary shadow" type="submit">Trimiteți</button>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="d-grid">
+                        <button class="btn btn-danger shadow" type="button" data-bs-toggle="modal" data-bs-target="#deleteConfirmation">Ștergeți</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
+</div>
+
+<!-- Dialog confirmare ștergere -->
+<div class="modal fade" id="deleteConfirmation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content shadow">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmare</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Anulați"></button>
+            </div>
+            <div class="modal-body">
+                Sigur doriți să ștergeți elementul selectat?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal">Anulați</button>
+                <form th:action="@{/editare/deleteBirou}" th:object="${birou}" method="post">
+                    <input class="d-none" name="birouId" th:value="${birou.id}">
+                    <button class="btn btn-danger">Ștergeți</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>

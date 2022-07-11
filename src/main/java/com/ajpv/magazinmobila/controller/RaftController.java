@@ -7,10 +7,7 @@ import com.ajpv.magazinmobila.repository.RaftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -33,42 +30,41 @@ public class RaftController {
 
     @GetMapping(value = "/adauga/raft")
     public String addRaft(Model model) {
-        Raft raft = Raft.builder().build();
-        raft.setCategory("Raft");
-        raft.setPrice(BigDecimal.valueOf(0.0));
+        boolean exists = false;
+        model.addAttribute("exists", exists);
+
+        Raft raft = Raft.builder().category("Raft").price(BigDecimal.valueOf(0.0)).build();
         model.addAttribute("raft", raft);
 
         List<Magazin> magazinList = magazinRepository.findAll();
         model.addAttribute("magazinList", magazinList);
 
-        return "adauga/raft";
+        return "editare/raft";
     }
 
-    @PostMapping(value = "/adauga/submitRaft")
-    public String submitRaft(@ModelAttribute Raft raft) {
-        saveToDatabase(raft);
+    @PostMapping(value = "/editeaza/raft")
+    public String editBiblioteca(@RequestParam("raftId") int id, Model model){
+        boolean exists = true;
+        model.addAttribute("exists", exists);
+
+        Raft raft = raftRepository.findById(id).get();
+        model.addAttribute("raft", raft);
+
+        List<Magazin> magazinList = magazinRepository.findAll();
+        model.addAttribute("magazinList", magazinList);
+
+        return "editare/raft";
+    }
+
+    @PostMapping(value = "/editare/submitRaft")
+    public String submitRaft(@ModelAttribute Raft raft, Model model) {
+        raftRepository.save(raft);
         return "redirect:/rafturi";
     }
 
-    private void saveToDatabase(Raft raft) {
-        raftRepository.save(raft);
-    }
-
-    @GetMapping(value = "/createRaft")
-    @ResponseBody
-    public String createRaft(){
-        Raft raft = Raft.builder().build();
-        raftRepository.save(raft);
-        return "OK!";
-    }
-
-    @GetMapping(value = "/showRaft")
-    @ResponseBody
-    public String showRaft(){
-        List<Raft> raftList = raftRepository.findAll();
-        for (Raft r : raftList){
-            System.out.println(r.toString());
-        }
-        return "OK!";
+    @PostMapping(value = "/editare/deleteRaft")
+    public String deleteRaft(@RequestParam("raftId") int id){
+        raftRepository.deleteById(id);
+        return "redirect:/rafturi";
     }
 }

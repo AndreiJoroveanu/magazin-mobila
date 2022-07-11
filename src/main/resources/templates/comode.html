@@ -76,6 +76,12 @@
             <td th:text="${comoda.material}"></td>
             <td th:text="${comoda.price}+' lei'"></td>
             <td th:text="${comoda.magazin.name}"></td>
+            <td>
+                <form th:action="@{/editeaza/comoda}" th:object="${comoda}" method="post">
+                    <input class="d-none" name="comodaId" th:value="${comoda.id}">
+                    <button class="btn btn-primary">Editați</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

@@ -59,7 +59,9 @@
 <div class="my-2 container-md">
     <h2>Adăugați un scaun</h2>
     <p>Introduceți datele obiectului</p>
-    <form th:action="@{submitScaun}" th:object="${scaun}" method="post">
+    <form th:action="@{/editare/submitScaun}" th:object="${scaun}" method="post">
+        <input type="text" class="d-none" th:field="${scaun.id}">
+
         <div class="form-floating shadow mb-3">
             <input type="text" class="form-control" id="inputCategory" placeholder="Categorie" th:field="${scaun.category}">
             <label for="inputCategory">Categorie</label>
@@ -105,10 +107,50 @@
             <label for="inputMagazin">Magazin</label>
         </div>
 
-        <div class="d-grid gap-2 col-4 shadow mb-3 mx-auto">
-            <button class="btn btn-primary shadow" type="submit">Trimiteți</button>
+        <div th:if="false == ${exists}">
+            <div class="d-grid gap-2 col-4 shadow mb-3 mx-auto">
+                <button class="btn btn-primary shadow" type="submit">Trimiteți</button>
+            </div>
+        </div>
+
+        <div th:if="true == ${exists}">
+            <div class="row row-cols-2 mb-3">
+                <div class="col">
+                    <div class="d-grid">
+                        <button class="btn btn-primary shadow" type="submit">Trimiteți</button>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="d-grid">
+                        <button class="btn btn-danger shadow" type="button" data-bs-toggle="modal" data-bs-target="#deleteConfirmation">Ștergeți</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
+</div>
+
+<!-- Dialog confirmare ștergere -->
+<div class="modal fade" id="deleteConfirmation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content shadow">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmare</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Anulați"></button>
+            </div>
+            <div class="modal-body">
+                Sigur doriți să ștergeți elementul selectat?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal">Anulați</button>
+                <form th:action="@{/editare/deleteScaun}" th:object="${scaun}" method="post">
+                    <input class="d-none" name="scaunId" th:value="${scaun.id}">
+                    <button class="btn btn-danger">Ștergeți</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>

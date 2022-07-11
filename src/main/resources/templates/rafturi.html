@@ -76,6 +76,12 @@
             <td th:text="${raft.material}"></td>
             <td th:text="${raft.price}+' lei'"></td>
             <td th:text="${raft.magazin.name}"></td>
+            <td>
+                <form th:action="@{/editeaza/raft}" th:object="${raft}" method="post">
+                    <input class="d-none" name="raftId" th:value="${raft.id}">
+                    <button class="btn btn-primary">Editați</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

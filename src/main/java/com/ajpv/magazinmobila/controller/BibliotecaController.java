@@ -7,10 +7,7 @@ import com.ajpv.magazinmobila.repository.MagazinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -33,42 +30,41 @@ public class BibliotecaController {
 
     @GetMapping(value = "/adauga/biblioteca")
     public String addBiblioteca(Model model) {
-        Biblioteca biblioteca = Biblioteca.builder().build();
-        biblioteca.setCategory("Biblioteca");
-        biblioteca.setPrice(BigDecimal.valueOf(0.0));
+        boolean exists = false;
+        model.addAttribute("exists", exists);
+
+        Biblioteca biblioteca = Biblioteca.builder().category("Biblioteca").price(BigDecimal.valueOf(0.0)).build();
         model.addAttribute("biblioteca", biblioteca);
 
         List<Magazin> magazinList = magazinRepository.findAll();
         model.addAttribute("magazinList", magazinList);
 
-        return "adauga/biblioteca";
+        return "editare/biblioteca";
     }
 
-    @PostMapping(value = "/adauga/submitBiblioteca")
-    public String submitBiblioteca(@ModelAttribute Biblioteca biblioteca) {
-        saveToDatabase(biblioteca);
+    @PostMapping(value = "/editeaza/biblioteca")
+    public String editBiblioteca(@RequestParam("bibliotecaId") int id, Model model){
+        boolean exists = true;
+        model.addAttribute("exists", exists);
+
+        Biblioteca biblioteca = bibliotecaRepository.findById(id).get();
+        model.addAttribute("biblioteca", biblioteca);
+
+        List<Magazin> magazinList = magazinRepository.findAll();
+        model.addAttribute("magazinList", magazinList);
+
+        return "editare/biblioteca";
+    }
+
+    @PostMapping(value = "/editare/submitBiblioteca")
+    public String submitBiblioteca(@ModelAttribute Biblioteca biblioteca, Model model) {
+        bibliotecaRepository.save(biblioteca);
         return "redirect:/biblioteci";
     }
 
-    private void saveToDatabase(Biblioteca biblioteca) {
-        bibliotecaRepository.save(biblioteca);
-    }
-
-    @GetMapping(value = "/createBiblioteca")
-    @ResponseBody
-    public String createBiblioteca(){
-        Biblioteca biblioteca = Biblioteca.builder().build();
-        bibliotecaRepository.save(biblioteca);
-        return "OK!";
-    }
-
-    @GetMapping(value = "/showBiblioteca")
-    @ResponseBody
-    public String showBiblioteca(){
-        List<Biblioteca> bibliotecaList = bibliotecaRepository.findAll();
-        for (Biblioteca bb : bibliotecaList){
-            System.out.println(bb.toString());
-        }
-        return "OK!";
+    @PostMapping(value = "/editare/deleteBiblioteca")
+    public String deleteBiblioteca(@RequestParam("bibliotecaId") int id){
+        bibliotecaRepository.deleteById(id);
+        return "redirect:/biblioteci";
     }
 }
