@@ -57,8 +57,16 @@
 
 <!-- Formular -->
 <div class="my-2 container-md">
-    <h2>Adăugați un scaun</h2>
-    <p>Introduceți datele obiectului</p>
+    <div th:if="false == ${exists}">
+        <h2>Adăugați un scaun</h2>
+        <p>Introduceți datele obiectului</p>
+    </div>
+    <div th:if="true == ${exists}">
+        <h2>Editați un scaun</h2>
+        <p>Schimbați datele obiectului</p>
+    </div>
+
+
     <form th:action="@{/editare/submitScaun}" th:object="${scaun}" method="post">
         <input type="text" class="d-none" th:field="${scaun.id}">
 
@@ -108,8 +116,8 @@
         </div>
 
         <div th:if="false == ${exists}">
-            <div class="d-grid gap-2 col-4 shadow mb-3 mx-auto">
-                <button class="btn btn-primary shadow" type="submit">Trimiteți</button>
+            <div class="d-grid gap-2 col-6 shadow mb-3 mx-auto">
+                <button class="btn btn-primary shadow" type="submit">Adăugați</button>
             </div>
         </div>
 
@@ -117,7 +125,7 @@
             <div class="row row-cols-2 mb-3">
                 <div class="col">
                     <div class="d-grid">
-                        <button class="btn btn-primary shadow" type="submit">Trimiteți</button>
+                        <button class="btn btn-primary shadow" type="submit">Salvați</button>
                     </div>
                 </div>
 
@@ -140,7 +148,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Anulați"></button>
             </div>
             <div class="modal-body">
-                Sigur doriți să ștergeți elementul selectat?
+                Sigur doriți să ștergeți elementul respectiv?
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" data-bs-dismiss="modal">Anulați</button>

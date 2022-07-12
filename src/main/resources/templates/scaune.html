@@ -77,7 +77,7 @@
             <td th:text="${scaun.material}"></td>
             <td th:text="${scaun.maxWeight}+' kg'"></td>
             <td th:text="${scaun.price}+' lei'"></td>
-            <td th:text="${scaun.magazin.name}"></td>
+            <td th:text="${scaun.magazinName}"></td>
             <td>
                 <form th:action="@{/editeaza/scaun}" th:object="${scaun}" method="post">
                     <input class="d-none" name="scaunId" th:value="${scaun.id}">

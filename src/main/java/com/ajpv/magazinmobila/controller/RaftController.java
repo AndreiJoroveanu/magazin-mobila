@@ -1,9 +1,10 @@
 package com.ajpv.magazinmobila.controller;
 
-import com.ajpv.magazinmobila.model.Magazin;
 import com.ajpv.magazinmobila.model.Raft;
-import com.ajpv.magazinmobila.repository.MagazinRepository;
-import com.ajpv.magazinmobila.repository.RaftRepository;
+import com.ajpv.magazinmobila.dto.RaftDto;
+import com.ajpv.magazinmobila.model.Magazin;
+import com.ajpv.magazinmobila.service.MagazinService;
+import com.ajpv.magazinmobila.service.RaftService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +16,13 @@ import java.util.List;
 @Controller
 public class RaftController {
     @Autowired
-    RaftRepository raftRepository;
-
+    RaftService raftService;
     @Autowired
-    MagazinRepository magazinRepository;
+    MagazinService magazinService;
 
     @GetMapping(value = "/rafturi")
     public String raft(Model model){
-        List<Raft> raftList = raftRepository.findAll();
+        List<RaftDto> raftList = raftService.getAllRafturi();
         model.addAttribute("raftList", raftList);
 
         return "rafturi";
@@ -36,7 +36,7 @@ public class RaftController {
         Raft raft = Raft.builder().category("Raft").price(BigDecimal.valueOf(0.0)).build();
         model.addAttribute("raft", raft);
 
-        List<Magazin> magazinList = magazinRepository.findAll();
+        List<Magazin> magazinList = magazinService.getAllMagazine();
         model.addAttribute("magazinList", magazinList);
 
         return "editare/raft";
@@ -47,10 +47,10 @@ public class RaftController {
         boolean exists = true;
         model.addAttribute("exists", exists);
 
-        Raft raft = raftRepository.findById(id).get();
+        Raft raft = raftService.getRaftById(id);
         model.addAttribute("raft", raft);
 
-        List<Magazin> magazinList = magazinRepository.findAll();
+        List<Magazin> magazinList = magazinService.getAllMagazine();
         model.addAttribute("magazinList", magazinList);
 
         return "editare/raft";
@@ -58,13 +58,13 @@ public class RaftController {
 
     @PostMapping(value = "/editare/submitRaft")
     public String submitRaft(@ModelAttribute Raft raft, Model model) {
-        raftRepository.save(raft);
+        raftService.saveRaft(raft);
         return "redirect:/rafturi";
     }
 
     @PostMapping(value = "/editare/deleteRaft")
     public String deleteRaft(@RequestParam("raftId") int id){
-        raftRepository.deleteById(id);
+        raftService.deleteRaft(id);
         return "redirect:/rafturi";
     }
 }

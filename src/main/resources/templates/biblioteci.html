@@ -76,7 +76,7 @@
             <td th:text="${biblioteca.color}"></td>
             <td th:text="${biblioteca.material}"></td>
             <td th:text="${biblioteca.price}+' lei'"></td>
-            <td th:text="${biblioteca.magazin.name}"></td>
+            <td th:text="${biblioteca.magazinName}"></td>
             <td>
                 <form th:action="@{/editeaza/biblioteca}" th:object="${biblioteca}" method="post">
                     <input class="d-none" name="bibliotecaId" th:value="${biblioteca.id}">

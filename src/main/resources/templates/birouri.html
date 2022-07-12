@@ -75,7 +75,7 @@
             <td th:text="${birou.color}"></td>
             <td th:text="${birou.material}"></td>
             <td th:text="${birou.price}+' lei'"></td>
-            <td th:text="${birou.magazin.name}"></td>
+            <td th:text="${birou.magazinName}"></td>
             <td>
                 <form th:action="@{/editeaza/birou}" th:object="${birou}" method="post">
                     <input class="d-none" name="birouId" th:value="${birou.id}">

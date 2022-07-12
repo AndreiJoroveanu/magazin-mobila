@@ -75,7 +75,7 @@
             <td th:text="${comoda.color}"></td>
             <td th:text="${comoda.material}"></td>
             <td th:text="${comoda.price}+' lei'"></td>
-            <td th:text="${comoda.magazin.name}"></td>
+            <td th:text="${comoda.magazinName}"></td>
             <td>
                 <form th:action="@{/editeaza/comoda}" th:object="${comoda}" method="post">
                     <input class="d-none" name="comodaId" th:value="${comoda.id}">

@@ -1,9 +1,10 @@
 package com.ajpv.magazinmobila.controller;
 
 import com.ajpv.magazinmobila.model.Birou;
+import com.ajpv.magazinmobila.dto.BirouDto;
 import com.ajpv.magazinmobila.model.Magazin;
-import com.ajpv.magazinmobila.repository.BirouRepository;
-import com.ajpv.magazinmobila.repository.MagazinRepository;
+import com.ajpv.magazinmobila.service.MagazinService;
+import com.ajpv.magazinmobila.service.BirouService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +16,13 @@ import java.util.List;
 @Controller
 public class BirouController {
     @Autowired
-    BirouRepository birouRepository;
-
+    BirouService birouService;
     @Autowired
-    MagazinRepository magazinRepository;
+    MagazinService magazinService;
 
     @GetMapping(value = "/birouri")
     public String birou(Model model){
-        List<Birou> birouList = birouRepository.findAll();
+        List<BirouDto> birouList = birouService.getAllBirouri();
         model.addAttribute("birouList", birouList);
 
         return "birouri";
@@ -36,7 +36,7 @@ public class BirouController {
         Birou birou = Birou.builder().category("Birou").price(BigDecimal.valueOf(0.0)).build();
         model.addAttribute("birou", birou);
 
-        List<Magazin> magazinList = magazinRepository.findAll();
+        List<Magazin> magazinList = magazinService.getAllMagazine();
         model.addAttribute("magazinList", magazinList);
 
         return "editare/birou";
@@ -47,10 +47,10 @@ public class BirouController {
         boolean exists = true;
         model.addAttribute("exists", exists);
 
-        Birou birou = birouRepository.findById(id).get();
+        Birou birou = birouService.getBirouById(id);
         model.addAttribute("birou", birou);
 
-        List<Magazin> magazinList = magazinRepository.findAll();
+        List<Magazin> magazinList = magazinService.getAllMagazine();
         model.addAttribute("magazinList", magazinList);
 
         return "editare/birou";
@@ -58,13 +58,13 @@ public class BirouController {
 
     @PostMapping(value = "/editare/submitBirou")
     public String submitBirou(@ModelAttribute Birou birou, Model model) {
-        birouRepository.save(birou);
+        birouService.saveBirou(birou);
         return "redirect:/birouri";
     }
 
     @PostMapping(value = "/editare/deleteBirou")
     public String deleteBirou(@RequestParam("birouId") int id){
-        birouRepository.deleteById(id);
+        birouService.deleteBirou(id);
         return "redirect:/birouri";
     }
 }

@@ -1,40 +1,32 @@
-package com.ajpv.magazinmobila.model;
+package com.ajpv.magazinmobila.dto;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 
-
 @Getter
-@Setter
 @NoArgsConstructor
+@Setter
 @SuperBuilder
-@MappedSuperclass
-public class Mobila {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class MobilaDto {
     private int id;
     private String category;
     private String name;
     private String color;
     private String material;
     private BigDecimal price;
+    private String magazinName;
 
-    @ManyToOne
-    @JoinColumn(name = "id_store")
-    private Magazin magazin;
-
-    public Mobila(int id, String category, String name, String color, String material, BigDecimal price, Magazin magazin) {
+    public MobilaDto(int id, String category, String name, String color, String material, BigDecimal price, String magazinName) {
         this.id = id;
         this.category = category;
         this.name = name;
         this.color = color;
         this.material = material;
         this.price = price;
-        this.magazin = magazin;
+        this.magazinName = magazinName;
     }
 }

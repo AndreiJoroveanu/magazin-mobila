@@ -1,9 +1,10 @@
 package com.ajpv.magazinmobila.controller;
 
-import com.ajpv.magazinmobila.model.Magazin;
 import com.ajpv.magazinmobila.model.Scaun;
-import com.ajpv.magazinmobila.repository.MagazinRepository;
-import com.ajpv.magazinmobila.repository.ScaunRepository;
+import com.ajpv.magazinmobila.dto.ScaunDto;
+import com.ajpv.magazinmobila.model.Magazin;
+import com.ajpv.magazinmobila.service.MagazinService;
+import com.ajpv.magazinmobila.service.ScaunService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +16,13 @@ import java.util.List;
 @Controller
 public class ScaunController {
     @Autowired
-    ScaunRepository scaunRepository;
-
+    ScaunService scaunService;
     @Autowired
-    MagazinRepository magazinRepository;
+    MagazinService magazinService;
+
     @GetMapping(value = "/scaune")
     public String scaun(Model model){
-        List<Scaun> scaunList = scaunRepository.findAll();
+        List<ScaunDto> scaunList = scaunService.getAllScaune();
         model.addAttribute("scaunList", scaunList);
 
         return "scaune";
@@ -35,7 +36,7 @@ public class ScaunController {
         Scaun scaun = Scaun.builder().category("Scaun").price(BigDecimal.valueOf(0.0)).build();
         model.addAttribute("scaun", scaun);
 
-        List<Magazin> magazinList = magazinRepository.findAll();
+        List<Magazin> magazinList = magazinService.getAllMagazine();
         model.addAttribute("magazinList", magazinList);
 
         return "editare/scaun";
@@ -46,10 +47,10 @@ public class ScaunController {
         boolean exists = true;
         model.addAttribute("exists", exists);
 
-        Scaun scaun = scaunRepository.findById(id).get();
+        Scaun scaun = scaunService.getScaunById(id);
         model.addAttribute("scaun", scaun);
 
-        List<Magazin> magazinList = magazinRepository.findAll();
+        List<Magazin> magazinList = magazinService.getAllMagazine();
         model.addAttribute("magazinList", magazinList);
 
         return "editare/scaun";
@@ -57,13 +58,13 @@ public class ScaunController {
 
     @PostMapping(value = "/editare/submitScaun")
     public String submitScaun(@ModelAttribute Scaun scaun, Model model) {
-        scaunRepository.save(scaun);
+        scaunService.saveScaun(scaun);
         return "redirect:/scaune";
     }
 
     @PostMapping(value = "/editare/deleteScaun")
     public String deleteScaun(@RequestParam("scaunId") int id){
-        scaunRepository.deleteById(id);
+        scaunService.deleteScaun(id);
         return "redirect:/scaune";
     }
 }

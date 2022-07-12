@@ -1,9 +1,10 @@
 package com.ajpv.magazinmobila.controller;
 
 import com.ajpv.magazinmobila.model.Biblioteca;
+import com.ajpv.magazinmobila.dto.BibliotecaDto;
 import com.ajpv.magazinmobila.model.Magazin;
-import com.ajpv.magazinmobila.repository.BibliotecaRepository;
-import com.ajpv.magazinmobila.repository.MagazinRepository;
+import com.ajpv.magazinmobila.service.MagazinService;
+import com.ajpv.magazinmobila.service.BibliotecaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +16,13 @@ import java.util.List;
 @Controller
 public class BibliotecaController {
     @Autowired
-    BibliotecaRepository bibliotecaRepository;
-
+    BibliotecaService bibliotecaService;
     @Autowired
-    MagazinRepository magazinRepository;
+    MagazinService magazinService;
 
     @GetMapping(value = "/biblioteci")
     public String biblioteca(Model model){
-        List<Biblioteca> bibliotecaList = bibliotecaRepository.findAll();
+        List<BibliotecaDto> bibliotecaList = bibliotecaService.getAllBiblioteci();
         model.addAttribute("bibliotecaList", bibliotecaList);
 
         return "biblioteci";
@@ -36,7 +36,7 @@ public class BibliotecaController {
         Biblioteca biblioteca = Biblioteca.builder().category("Biblioteca").price(BigDecimal.valueOf(0.0)).build();
         model.addAttribute("biblioteca", biblioteca);
 
-        List<Magazin> magazinList = magazinRepository.findAll();
+        List<Magazin> magazinList = magazinService.getAllMagazine();
         model.addAttribute("magazinList", magazinList);
 
         return "editare/biblioteca";
@@ -47,10 +47,10 @@ public class BibliotecaController {
         boolean exists = true;
         model.addAttribute("exists", exists);
 
-        Biblioteca biblioteca = bibliotecaRepository.findById(id).get();
+        Biblioteca biblioteca = bibliotecaService.getBibliotecaById(id);
         model.addAttribute("biblioteca", biblioteca);
 
-        List<Magazin> magazinList = magazinRepository.findAll();
+        List<Magazin> magazinList = magazinService.getAllMagazine();
         model.addAttribute("magazinList", magazinList);
 
         return "editare/biblioteca";
@@ -58,13 +58,13 @@ public class BibliotecaController {
 
     @PostMapping(value = "/editare/submitBiblioteca")
     public String submitBiblioteca(@ModelAttribute Biblioteca biblioteca, Model model) {
-        bibliotecaRepository.save(biblioteca);
+        bibliotecaService.saveBiblioteca(biblioteca);
         return "redirect:/biblioteci";
     }
 
     @PostMapping(value = "/editare/deleteBiblioteca")
     public String deleteBiblioteca(@RequestParam("bibliotecaId") int id){
-        bibliotecaRepository.deleteById(id);
+        bibliotecaService.deleteBiblioteca(id);
         return "redirect:/biblioteci";
     }
 }
